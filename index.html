@@ -49,6 +49,39 @@
             --scrollbar-track: #020617;
         }
 
+        /* New Mode 1: Galaxy Cyber Mode */
+        body.galaxy-mode {
+            --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --page-bg: rgba(48, 43, 99, 0.45);
+            --text-color: #e2e8f0;
+            --accent-color: #8b5cf6;
+            --title-color: #c084fc;
+            --btn-bg: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --scrollbar-track: #0f0c29;
+        }
+
+        /* New Mode 2: Sunset Gold Mode */
+        body.sunset-mode {
+            --bg-gradient: linear-gradient(135deg, #451a03 0%, #7c2d12 50%, #b45309 100%);
+            --page-bg: rgba(124, 45, 18, 0.35);
+            --text-color: #fef3c7;
+            --accent-color: #f59e0b;
+            --title-color: #fbbf24;
+            --btn-bg: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            --scrollbar-track: #451a03;
+        }
+
+        /* New Mode 3: Matrix Hologram Mode */
+        body.matrix-mode {
+            --bg-gradient: radial-gradient(circle, #022c22 0%, #020617 100%);
+            --page-bg: rgba(2, 44, 34, 0.5);
+            --text-color: #4ade80;
+            --accent-color: #22c55e;
+            --title-color: #86efac;
+            --btn-bg: linear-gradient(135deg, #15803d 0%, #22c55e 100%);
+            --scrollbar-track: #020617;
+        }
+
         body.neon-mode .crystal-btn {
             border: 2px solid #39ff14;
             box-shadow: 0 0 15px #ff007f, inset 0 0 15px #00f2fe;
@@ -60,12 +93,10 @@
                 filter: hue-rotate(0deg);
                 box-shadow: 0 0 15px #ff007f;
             }
-
             50% {
                 filter: hue-rotate(180deg);
                 box-shadow: 0 0 25px #39ff14;
             }
-
             100% {
                 filter: hue-rotate(360deg);
                 box-shadow: 0 0 15px #00f2fe;
@@ -108,24 +139,30 @@
         /* Hamburger Menu Styles */
         .hamburger-menu-btn {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 25px;
+            left: 25px;
             z-index: 1001;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 8px;
-            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 10px 14px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+        }
+
+        .hamburger-menu-btn:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .hamburger-menu-btn span {
             display: block;
-            width: 24px;
+            width: 26px;
             height: 3px;
             background: var(--text-color);
             border-radius: 2px;
@@ -147,7 +184,7 @@
         .sidebar {
             position: fixed;
             top: 0;
-            left: -300px;
+            left: -320px;
             width: 280px;
             height: 100%;
             background: rgba(16, 20, 35, 0.95);
@@ -213,7 +250,6 @@
             transform: translateX(5px);
         }
 
-        /* Developer Info & Games Section Styles inside Pages */
         .dev-info-card, .game-card {
             background: rgba(255, 255, 255, 0.08);
             padding: 20px;
@@ -256,7 +292,6 @@
             background: linear-gradient(135deg, rgba(0, 243, 255, 0.5), rgba(255, 0, 127, 0.5));
         }
 
-        /* Mini Games Styling */
         .mini-game-container {
             text-align: center;
         }
@@ -300,29 +335,16 @@
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: translateY(-120vh) rotate(20deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
         }
 
         @keyframes floatUpHeart {
-            0% {
-                transform: translateY(0) scale(0.8);
-                opacity: 0.7;
-            }
-
-            100% {
-                transform: translateY(-120vh) scale(1.2) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+            100% { transform: translateY(-120vh) scale(1.2) rotate(360deg); opacity: 0; }
         }
 
+        /* Futuristic Neon Crystal Clear Login Page based on reference image */
         #loginOverlay {
             position: fixed;
             display: flex;
@@ -330,114 +352,168 @@
             align-items: center;
             min-height: 100vh;
             width: 100%;
-            background: radial-gradient(circle at center, rgba(27, 27, 58, 0.92) 0%, rgba(11, 15, 25, 0.95) 100%);
+            background: radial-gradient(circle at center, #2e1065 0%, #0f172a 60%, #020617 100%);
             padding: 20px;
-            z-index: 5;
+            z-index: 5000;
+            overflow: hidden;
+        }
+
+        #loginOverlay::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(0, 242, 254, 0.2), rgba(139, 92, 246, 0.3));
+            border-radius: 50%;
+            filter: blur(90px);
+            animation: pulseGlowLogin 8s infinite alternate;
+        }
+
+        @keyframes pulseGlowLogin {
+            0% { transform: scale(0.85); opacity: 0.5; }
+            100% { transform: scale(1.25); opacity: 0.85; }
         }
 
         .login-card {
-            background: rgba(16, 20, 35, 0.85);
-            padding: 40px;
-            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 45px 35px;
+            border-radius: 35px;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.25),
-                inset 0 0 15px rgba(255, 0, 128, 0.15);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7),
+                        0 0 40px rgba(0, 242, 254, 0.25),
+                        inset 0 0 25px rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             text-align: center;
+            animation: cardFloat 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .login-card h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8),
-                0 0 20px rgba(0, 243, 255, 0.5);
+        @keyframes cardFloat {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .login-card p {
-            font-size: 14px;
-            color: #a0aec0;
-            margin-bottom: 25px;
+        .login-avatar {
+            width: 85px;
+            height: 85px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        .input-group {
-            text-align: left;
+        .login-avatar svg {
+            width: 45px;
+            height: 45px;
+            fill: rgba(255, 255, 255, 0.85);
+            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
+        }
+
+        .login-input-group {
+            position: relative;
             margin-bottom: 22px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            color: #00f3ff;
-            margin-bottom: 8px;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+            text-align: left;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 5px;
             transition: all 0.3s ease;
         }
 
-        .input-group input {
+        .login-input-group:focus-within {
+            border-color: #00f2fe;
+            box-shadow: 0 8px 15px -8px rgba(0, 242, 254, 0.5);
+        }
+
+        .login-input-group span {
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login-input-group input {
             width: 100%;
-            padding: 14px 16px;
-            background: rgba(10, 14, 26, 0.75);
-            border: 2px solid rgba(45, 55, 72, 0.8);
-            border-radius: 12px;
+            padding: 12px 12px 12px 38px;
+            background: transparent;
+            border: none;
             color: #ffffff;
-            font-size: 15px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .input-group input::placeholder {
-            color: #4a5568;
-            transition: color 0.3s ease;
-        }
-
-        .input-group input:hover {
-            border-color: rgba(0, 243, 255, 0.4);
-            background: rgba(15, 20, 35, 0.85);
-        }
-
-        .input-group input:focus {
+            font-size: 16px;
             outline: none;
-            border-color: #00f3ff;
-            background: rgba(5, 8, 15, 0.95);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4),
-                inset 0 0 10px rgba(0, 243, 255, 0.2);
-            transform: translateY(-2px);
+        }
+
+        .login-input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .login-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 28px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            accent-color: #ff007f;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .forgot-pass-link {
+            color: #00f2fe;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+        }
+
+        .forgot-pass-link:hover {
+            color: #39ff14;
+            text-shadow: 0 0 12px rgba(57, 255, 20, 0.8);
         }
 
         .login-error {
-            font-size: 13px;
+            font-size: 13.5px;
             color: #ff3366;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: none;
-            text-shadow: 0 0 5px rgba(255, 51, 102, 0.4);
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(255, 51, 102, 0.5);
         }
 
         .login-btn {
             position: relative;
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.25), rgba(255, 0, 127, 0.25));
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 14px;
+            background: linear-gradient(135deg, #7928ca 0%, #ff007f 50%, #00f2fe 100%);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
             color: #ffffff;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
-            letter-spacing: 0.8px;
+            letter-spacing: 1.5px;
             cursor: pointer;
             overflow: hidden;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7),
-                inset 0 3px 6px rgba(255, 255, 255, 0.8),
-                inset 0 -3px 6px rgba(0, 0, 0, 0.5),
-                0 0 20px rgba(0, 243, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
+                        0 0 25px rgba(255, 0, 127, 0.5),
+                        0 0 25px rgba(0, 242, 254, 0.5);
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -457,18 +533,14 @@
         }
 
         .login-btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.45), rgba(255, 0, 127, 0.45));
-            border-color: rgba(255, 255, 255, 1);
+            transform: translateY(-4px) scale(1.02);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8),
-                inset 0 4px 8px rgba(255, 255, 255, 1),
-                inset 0 -4px 8px rgba(0, 0, 0, 0.6),
-                0 0 30px rgba(0, 243, 255, 0.8),
-                0 0 30px rgba(255, 0, 127, 0.8);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+                        0 0 35px rgba(255, 0, 127, 0.9),
+                        0 0 35px rgba(0, 242, 254, 0.9);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
         }
 
-        /* Main content hidden until login */
+        /* Main website hidden initially */
         #mainWebsiteContainer {
             display: none;
             width: 100%;
@@ -476,42 +548,47 @@
             align-items: center;
         }
 
-        /* Theme Control & Navigation Bar */
         .theme-switcher-container {
             position: relative;
             z-index: 100;
-            margin-top: 15px;
+            margin-top: 25px;
             display: flex;
-            gap: 6px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            padding: 0 10px;
+            padding: 0 15px;
         }
 
         .theme-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             color: #fff;
-            padding: 6px 12px;
-            border-radius: 15px;
+            padding: 7px 14px;
+            border-radius: 16px;
             cursor: pointer;
-            font-size: 0.78em;
+            font-size: 0.8em;
             font-weight: 600;
             backdrop-filter: blur(10px);
             transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .nav-buttons-container {
             position: relative;
             z-index: 100;
-            margin: 12px 0 8px 0;
+            margin: 14px 0 8px 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            padding: 0 10px;
+            gap: 10px;
+            padding: 0 15px;
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
         }
 
         .crystal-btn {
@@ -570,13 +647,8 @@
         }
 
         @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
-            }
-
-            100% {
-                box-shadow: 0 0 25px rgba(255, 0, 127, 0.9);
-            }
+            0% { box-shadow: 0 0 10px rgba(255, 0, 127, 0.5); }
+            100% { box-shadow: 0 0 25px rgba(255, 0, 127, 0.9); }
         }
 
         .rotate-360 {
@@ -584,17 +656,9 @@
         }
 
         @keyframes spin360 {
-            0% {
-                transform: rotate(0deg) scale(1);
-            }
-
-            50% {
-                transform: rotate(180deg) scale(1.08);
-            }
-
-            100% {
-                transform: rotate(360deg) scale(1);
-            }
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.08); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         .music-btn {
@@ -628,7 +692,7 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
         @media (min-width: 768px) {
@@ -644,20 +708,10 @@
         }
 
         @keyframes smoothShift {
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.98);
-                filter: blur(4px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
-        /* Middle Bottom Round Navigation Arrow Buttons CSS */
         .page-nav-arrows {
             position: absolute;
             bottom: 15px;
@@ -693,8 +747,7 @@
             box-shadow: 0 6px 20px rgba(255, 75, 145, 0.4);
         }
 
-        h1,
-        h2 {
+        h1, h2 {
             font-family: 'Playfair Display', serif;
         }
 
@@ -730,7 +783,6 @@
             font-size: 1.05em;
         }
 
-        /* Voice Note Container Styling */
         .voice-note-wrapper {
             position: relative;
             width: 100%;
@@ -770,22 +822,8 @@
             margin-top: 15px;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
-                0 0 20px rgba(255, 75, 145, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 75, 145, 0.2);
             text-align: center;
-            animation: fadeInPlayer 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        @keyframes fadeInPlayer {
-            from {
-                opacity: 0;
-                transform: translateY(-10px) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
         }
 
         .voice-close-btn {
@@ -798,12 +836,6 @@
             font-size: 20px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .voice-close-btn:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
         }
 
         .voice-player-container p {
@@ -819,7 +851,6 @@
             outline: none;
         }
 
-        /* Cake & Layer Text Styling (Fixed positioning and layout) */
         .cake-section-container {
             text-align: center;
             position: relative;
@@ -926,18 +957,9 @@
             z-index: 11;
         }
 
-        .candle-flame.out {
-            display: none !important;
-        }
-
         @keyframes flameFlicker {
-            0% {
-                transform: translateX(-50%) scale(1);
-            }
-
-            100% {
-                transform: translateX(-50%) scale(1.15);
-            }
+            0% { transform: translateX(-50%) scale(1); }
+            100% { transform: translateX(-50%) scale(1.15); }
         }
 
         .knife-cut-line {
@@ -952,29 +974,16 @@
         }
 
         @keyframes knifeSlice {
-            0% {
-                height: 0px;
-                opacity: 1;
-            }
-
-            50% {
-                height: 220px;
-                opacity: 1;
-            }
-
-            100% {
-                height: 220px;
-                opacity: 0;
-            }
+            0% { height: 0px; opacity: 1; }
+            50% { height: 220px; opacity: 1; }
+            100% { height: 220px; opacity: 0; }
         }
 
         .cut-active .knife-cut-line {
             animation: knifeSlice 0.7s ease-out forwards;
         }
 
-        .cut-active .tier-bottom,
-        .cut-active .tier-middle,
-        .cut-active .tier-top {
+        .cut-active .tier-bottom, .cut-active .tier-middle, .cut-active .tier-top {
             transition: clip-path 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -1006,15 +1015,8 @@
         }
 
         @keyframes popIn3D {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .crystal-3d-glowing-frame {
@@ -1030,10 +1032,7 @@
         }
 
         @media (min-width: 768px) {
-            .crystal-3d-glowing-frame {
-                width: 175px;
-                height: 175px;
-            }
+            .crystal-3d-glowing-frame { width: 175px; height: 175px; }
         }
 
         .crystal-3d-glowing-frame img {
@@ -1064,7 +1063,6 @@
             margin-top: 2px;
         }
 
-        /* Gallery Grid Styling */
         .gallery-title {
             text-align: center;
             color: var(--title-color);
@@ -1116,9 +1114,7 @@
         }
 
         @media (min-width: 768px) {
-            .photo-card img {
-                height: 170px;
-            }
+            .photo-card img { height: 170px; }
         }
 
         .photo-card p {
@@ -1128,7 +1124,6 @@
             font-size: 0.85em;
         }
 
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -1173,13 +1168,8 @@
             border-radius: 50%;
         }
 
-        .lightbox-prev {
-            left: 15px;
-        }
-
-        .lightbox-next {
-            right: 15px;
-        }
+        .lightbox-prev { left: 15px; }
+        .lightbox-next { right: 15px; }
 
         .video-main-container {
             position: relative;
@@ -1226,7 +1216,6 @@
             color: #ffb6c1;
         }
 
-        /* Quiz Box */
         .quiz-container {
             background: rgba(255, 255, 255, 0.08);
             padding: 18px;
@@ -1260,9 +1249,7 @@
             transition: all 0.3s;
         }
 
-        .quiz-btn:hover {
-            background: rgba(255, 105, 180, 0.4);
-        }
+        .quiz-btn:hover { background: rgba(255, 105, 180, 0.4); }
 
         .quiz-result {
             margin-top: 12px;
@@ -1285,32 +1272,41 @@
 
     <div class="balloon-container" id="balloonContainer"></div>
 
-    <!-- Login Page Overlay -->
+    <!-- Futuristic Crystal Clear Login Page Overlay -->
     <div id="loginOverlay">
         <div class="login-card">
-            <h2>Welcome! ✨</h2>
-            <p>ওয়েবসাইটটিতে প্রবেশ করতে তোমার নাম ও পাসওয়ার্ড দাও</p>
-
-            <div class="input-group">
-                <label for="loginName">Your Name</label>
-                <input type="text" id="loginName" placeholder="Enter your name">
+            <div class="login-avatar">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
             </div>
 
-            <div class="input-group">
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" placeholder="Enter password">
+            <div class="login-input-group">
+                <span>👤</span>
+                <input type="text" id="loginName" placeholder="Your Name">
             </div>
 
-            <div class="login-error" id="loginError">❌ নাম অথবা পাসওয়ার্ড ভুল হয়েছে! আবার চেষ্টা কর।</div>
+            <div class="login-input-group">
+                <span>🔒</span>
+                <input type="password" id="loginPassword" placeholder="Password">
+            </div>
 
-            <button class="login-btn" onclick="checkLogin()">Login Now 🚀</button>
+            <div class="login-options-row">
+                <label class="remember-me">
+                    <input type="checkbox" checked> Remember me
+                </label>
+                <a class="forgot-pass-link" onclick="showForgotPassword()">Forgot Password?</a>
+            </div>
+
+            <div class="login-error" id="loginError">❌ নাম অথবা পাসওয়ার্ড ভুল হয়েছে!</div>
+
+            <button class="login-btn" onclick="checkLogin()">LOGIN</button>
         </div>
     </div>
 
     <!-- Main Website Container (Hidden until logged in) -->
     <div id="mainWebsiteContainer">
 
-        <!-- Hamburger Menu Bar Integration -->
         <button class="hamburger-menu-btn" onclick="toggleSidebar()">
             <span></span>
             <span></span>
@@ -1339,11 +1335,13 @@
         </audio>
         <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
 
-        <!-- Theme Switcher Bar -->
         <div class="theme-switcher-container">
-            <button class="theme-btn" onclick="setTheme('dark')">🌙 Dark Mode</button>
-            <button class="theme-btn" onclick="setTheme('light')">☀️ Light Mode</button>
-            <button class="theme-btn" onclick="setTheme('neon')">⚡ Neon Mode</button>
+            <button class="theme-btn" onclick="setTheme('dark')">🌙 Dark</button>
+            <button class="theme-btn" onclick="setTheme('light')">☀️ Light</button>
+            <button class="theme-btn" onclick="setTheme('neon')">⚡ Neon</button>
+            <button class="theme-btn" onclick="setTheme('galaxy')">🌌 Galaxy</button>
+            <button class="theme-btn" onclick="setTheme('sunset')">🌅 Sunset</button>
+            <button class="theme-btn" onclick="setTheme('matrix')">💻 Matrix</button>
         </div>
 
         <!-- Wish Message (Page 1) -->
@@ -1352,19 +1350,14 @@
                 <h1>Happy Birthday, Orpa Saha! 🎂</h1>
                 <div class="wish-card">
                     <p><strong>My Dear Sister,</strong></p>
-                    <p>শুভ জন্মদিন! ঈশ্বর তোকে সবসময় হাসিখুশি, আনন্দিত এবং সুস্থ রাখুক। তুই আমাদের জীবনের অন্যতম বড় একটি
-                        আশীর্বাদ। তোর সব স্বপ্ন ও আশা যেন সবসময় সত্যি হয়!</p>
-                    <p>আজকের এই বিশেষ দিনটি তোর জন্য অনেক অনেক আনন্দ নিয়ে আসুক। তোর জন্য তৈরি আমার এই বিশেষ সারপ্রাইজ
-                        ওয়েবসাইটটি দেখে নে😎! ভালো লাগলে বলতে ভূলে যাস না যেনো । ❤️</p>
+                    <p>শুভ জন্মদিন! ঈশ্বর তোকে সবসময় হাসিখুশি, আনন্দিত এবং সুস্থ রাখুক। তুই আমাদের জীবনের অন্যতম বড় একটি আশীর্বাদ। তোর সব স্বপ্ন ও আশা যেন সবসময় সত্যি হয়!</p>
+                    <p>আজকের এই বিশেষ দিনটি তোর জন্য অনেক অনেক আনন্দ নিয়ে আসুক। তোর জন্য তৈরি আমার এই বিশেষ সারপ্রাইজ ওয়েবসাইটটি দেখে নে😎! ভালো লাগলে বলতে ভূলে যাস না যেনো । ❤️</p>
 
-                    <!-- Voice Note Wrapper (Centered) -->
                     <div class="voice-note-wrapper">
-                        <!-- Voice Note Trigger Button -->
                         <div id="voiceNoteTrigger" class="voice-note-trigger" onclick="toggleVoicePlayer()">
                             <span>🎙️</span> দীপের ভয়েস মেসেজটি শুনতে এখানে ক্লিক করুন
                         </div>
 
-                        <!-- Hidden Voice Player Container -->
                         <div id="voicePlayerContainer" class="voice-player-container">
                             <button class="voice-close-btn" onclick="toggleVoicePlayer()">&times;</button>
                             <p>দ্বিপের কণ্ঠের বিশেষ ভয়েস নোট:</p>
@@ -1379,14 +1372,12 @@
                 </div>
             </div>
 
-            <!-- Page Navigation Arrow Buttons -->
             <div class="page-nav-arrows">
                 <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
                 <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
-        <!-- Navigation Buttons -->
         <div class="nav-buttons-container">
             <button class="crystal-btn active-btn" onclick="switchPage('wishPage', this)">💌 Wish Message</button>
             <button class="crystal-btn" onclick="switchPage('cakePage', this)">🎂 Cake & Surprise</button>
@@ -1395,19 +1386,18 @@
         </div>
 
         <div class="single-btn-container">
-            <button class="crystal-btn special-video-btn" onclick="switchPage('videoPage', this)">🎬 Birthday Song &
-                Sister Special</button>
+            <button class="crystal-btn special-video-btn" onclick="switchPage('videoPage', this)">🎬 Birthday Song & Sister Special</button>
         </div>
 
-        <!-- Cake Section (Page 2) - Auto Microphone & Blow/Cut Integration -->
+        <!-- Cake Section (Page 2) -->
         <div id="cakePage" class="page">
             <div class="cake-section-container">
-                <h2 class="cake-title">Make a Wish & Blow/Cut the Cake! ✨</h2>
-                <p class="cake-subtitle" id="instructionText">মাইক্রোফোন অন আছে। ফুঁ দিয়ে অথবা বাটনে ক্লিক করে কেক কাটুন!</p>
+                <h2 class="cake-title">Make a Wish & Cut the Cake! ✨</h2>
+                <p class="cake-subtitle">নিচের বাটনে ক্লিক করে সুন্দর কেকটি কাটো!</p>
 
                 <div class="modern-cake-wrapper" id="cakeWrapper">
                     <div class="knife-cut-line"></div>
-                    <div class="candle-flame" id="candleFlame"></div>
+                    <div class="candle-flame"></div>
                     <div class="candle-stick"></div>
                     <div class="tier tier-top">Happy</div>
                     <div class="tier tier-middle">Birthday</div>
@@ -1420,19 +1410,14 @@
                     </div>
                     <div class="years-counter-container">
                         <div class="years-counter-text" id="yearsCounterText">0 Years</div>
-                        <div class="years-welcome-msg" id="yearsWelcomeMsg">🎉 Welcome to 19 Years of Sweetness! 👑✨
-                        </div>
+                        <div class="years-welcome-msg" id="yearsWelcomeMsg">🎉 Welcome to 19 Years of Sweetness! 👑✨</div>
                     </div>
                 </div>
 
-                <button class="crystal-btn" id="cutCakeBtn" style="margin: 15px auto 0 auto;" onclick="cutCake()">🔪
-                    Click to Cut Cake</button>
-                <h2 id="cakeWishText"
-                    style="margin-top: 15px; color: var(--title-color); display: none; font-size: 1.15em;">🎉 YAY! Happy
-                    Birthday Orpa! Let's Celebrate! 🥳🎈</h2>
+                <button class="crystal-btn" id="cutCakeBtn" style="margin: 15px auto 0 auto;" onclick="cutCake()">🔪 Click to Cut Cake</button>
+                <h2 id="cakeWishText" style="margin-top: 15px; color: var(--title-color); display: none; font-size: 1.15em;">🎉 YAY! Happy Birthday Orpa! Let's Celebrate! 🥳🎈</h2>
             </div>
 
-            <!-- Page Navigation Arrow Buttons -->
             <div class="page-nav-arrows">
                 <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
                 <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
@@ -1444,39 +1429,18 @@
             <h2 class="gallery-title">Our Memories (Amit & Orpa) 💕</h2>
             <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
             <div class="gallery-grid">
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi14.jpeg" alt="Memory 1">
-                    <p>Memory 1</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi13.jpeg" alt="Memory 2">
-                    <p>Memory 2</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi21.jpeg" alt="Memory 3">
-                    <p>Memory 3</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi20.jpeg" alt="Memory 4">
-                    <p>Memory 4</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi26.jpeg" alt="Memory 5">
-                    <p>Memory 5</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi7.jpeg" alt="Memory 6">
-                    <p>Memory 6</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi22.jpeg" alt="Memory 7">
-                    <p>Memory 7</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi19.jpeg" alt="Memory 8">
-                    <p>Memory 8</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi9.jpeg" alt="Memory 9">
-                    <p>Memory 9</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi24.jpeg" alt="Memory 10">
-                    <p>You & Ankita</p>
-                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi14.jpeg" alt="Memory 1"><p>Memory 1</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi13.jpeg" alt="Memory 2"><p>Memory 2</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi21.jpeg" alt="Memory 3"><p>Memory 3</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi20.jpeg" alt="Memory 4"><p>Memory 4</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi26.jpeg" alt="Memory 5"><p>Memory 5</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi7.jpeg" alt="Memory 6"><p>Memory 6</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi22.jpeg" alt="Memory 7"><p>Memory 7</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi19.jpeg" alt="Memory 8"><p>Memory 8</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi9.jpeg" alt="Memory 9"><p>Memory 9</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi24.jpeg" alt="Memory 10"><p>You & Ankita</p></div>
             </div>
 
-            <!-- Page Navigation Arrow Buttons -->
             <div class="page-nav-arrows">
                 <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
                 <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
@@ -1488,39 +1452,18 @@
             <h2 class="gallery-title">Orpa's Gallery 👑</h2>
             <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
             <div class="gallery-grid">
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi1.jpeg" alt="Orpa Photo 1">
-                    <p>Orpa Photo 1</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi2.jpeg" alt="Orpa Photo 2">
-                    <p>Orpa Photo 2</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi4.jpeg" alt="Orpa Photo 3">
-                    <p>Orpa Photo 3</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi6.jpeg" alt="Orpa Photo 4">
-                    <p>Orpa Photo 4</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi8.jpeg" alt="Orpa Photo 5">
-                    <p>Orpa Photo 5</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi10.jpeg" alt="Orpa Photo 6">
-                    <p>Orpa Photo 6</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi15.jpeg" alt="Orpa Photo 7">
-                    <p>Orpa Photo 7</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi23.jpeg" alt="Orpa Photo 8">
-                    <p>Orpa Photo 8</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi25.jpeg" alt="Orpa Photo 9">
-                    <p>Orpa Photo 9</p>
-                </div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi18.jpeg" alt="Orpa Photo 10">
-                    <p>Orpa Photo 10</p>
-                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi1.jpeg" alt="Orpa Photo 1"><p>Orpa Photo 1</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi2.jpeg" alt="Orpa Photo 2"><p>Orpa Photo 2</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi4.jpeg" alt="Orpa Photo 3"><p>Orpa Photo 3</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi6.jpeg" alt="Orpa Photo 4"><p>Orpa Photo 4</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi8.jpeg" alt="Orpa Photo 5"><p>Orpa Photo 5</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi10.jpeg" alt="Orpa Photo 6"><p>Orpa Photo 6</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi15.jpeg" alt="Orpa Photo 7"><p>Orpa Photo 7</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi23.jpeg" alt="Orpa Photo 8"><p>Orpa Photo 8</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi25.jpeg" alt="Orpa Photo 9"><p>Orpa Photo 9</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi18.jpeg" alt="Orpa Photo 10"><p>Orpa Photo 10</p></div>
             </div>
 
-            <!-- Page Navigation Arrow Buttons -->
             <div class="page-nav-arrows">
                 <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
                 <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
@@ -1540,22 +1483,18 @@
                 </div>
                 <div class="audio-volume-box">
                     <label for="volumeSlider">🔊 Volume:</label>
-                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1"
-                        oninput="adjustAudioVolume(this.value)">
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="adjustAudioVolume(this.value)">
                 </div>
             </div>
 
             <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-                <button class="crystal-btn special-video-btn" onclick="switchPage('bestSisterPage', this)">💖 Why You're
-                    the Best Sister</button>
-                <button class="crystal-btn special-video-btn" onclick="switchPage('funQuizPage', this)">🎮 Fun Birthday
-                    Quiz</button>
+                <button class="crystal-btn special-video-btn" onclick="switchPage('bestSisterPage', this)">💖 Why You're the Best Sister</button>
+                <button class="crystal-btn special-video-btn" onclick="switchPage('funQuizPage', this)">🎮 Fun Birthday Quiz</button>
             </div>
             <audio id="videoAudio" preload="auto">
                 <source src="audio.mp3" type="audio/mpeg">
             </audio>
 
-            <!-- Page Navigation Arrow Buttons -->
             <div class="page-nav-arrows">
                 <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
                 <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
@@ -1567,25 +1506,21 @@
             <h2 class="gallery-title">Why You're the Best Sister 💖</h2>
             <p class="gallery-subtitle">ট্যাপ করে দেখে নাও কেন তুই সেরা!</p>
             <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                    onclick="alert('তুই সবসময় আমার সব আবdar হাসিমুখে মেনে নেস! 🥰')">
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);" onclick="alert('তুই সবসময় আমার সব আবdar হাসিমুখে মেনে নেস! 🥰')">
                     <h4 style="color: var(--title-color); margin-bottom: 6px;">🎁 Endless Support</h4>
                     <p style="font-size: 0.88em;">আমার যেকোনো পরিস্থিতিতে সবসময় পাশে থাকার জন্য।</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                    onclick="alert('তোর সাথে কাটানো প্রতিটা মুহূর্ত হাসিতে ভরপুর থাকে! 😂')">
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);" onclick="alert('তোর সাথে কাটানো প্রতিটা মুহূর্ত হাসিতে ভরপুর থাকে! 😂')">
                     <h4 style="color: var(--title-color); margin-bottom: 6px;">✨ Pure Joy</h4>
                     <p style="font-size: 0.88em;">চারপাশটা সবসময় আনন্দময় ও মাতিয়ে রাখার জন্য।</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                    onclick="alert('আমার বিপদে-আপদে তুই সবার আগে ভরসা হয়ে দাঁড়াস! 🛡️')">
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);" onclick="alert('আমার বিপদে-আপদে তুই সবার আগে ভরসা হয়ে দাঁড়াস! 🛡️')">
                     <h4 style="color: var(--title-color); margin-bottom: 6px;">👑 Best Protector</h4>
                     <p style="font-size: 0.88em;">আমার সেরা শুভাকাঙ্ক্ষী ও রক্ষমাতা হওয়ার জন্য।</p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button class="crystal-btn" onclick="switchPage('videoPage', this)"
-                    style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
+                <button class="crystal-btn" onclick="switchPage('videoPage', this)" style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
             </div>
         </div>
 
@@ -1604,8 +1539,7 @@
                 <div class="quiz-result" id="quizResult"></div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button class="crystal-btn" onclick="switchPage('videoPage', this)"
-                    style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
+                <button class="crystal-btn" onclick="switchPage('videoPage', this)" style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
             </div>
         </div>
 
@@ -1655,7 +1589,6 @@
             </div>
         </div>
 
-        <!-- Lightbox Zoom Overlay -->
         <div class="lightbox" id="lightbox">
             <span class="lightbox-close" onclick="closeZoom()">&times;</span>
             <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
@@ -1713,6 +1646,11 @@
             }
         }
 
+        function showForgotPassword() {
+            playSoftClickSound();
+            alert("তোমার ভাইকে কল দিয়ে তোমার ইউজার আইডি, তোমার নেম আর হচ্ছে পাসওয়ার্ডটা জেনে এরপর লগইন করার চেষ্টা করো ধন্যবাদ। অন্যথায় চেষ্টা করে কোন লাভ হবে না।");
+        }
+
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSoftClickSound() {
@@ -1732,11 +1670,17 @@
 
         function setTheme(mode) {
             playSoftClickSound();
-            document.body.classList.remove('light-mode', 'neon-mode');
+            document.body.classList.remove('light-mode', 'neon-mode', 'galaxy-mode', 'sunset-mode', 'matrix-mode');
             if (mode === 'light') {
                 document.body.classList.add('light-mode');
             } else if (mode === 'neon') {
                 document.body.classList.add('neon-mode');
+            } else if (mode === 'galaxy') {
+                document.body.classList.add('galaxy-mode');
+            } else if (mode === 'sunset') {
+                document.body.classList.add('sunset-mode');
+            } else if (mode === 'matrix') {
+                document.body.classList.add('matrix-mode');
             }
         }
 
@@ -1761,7 +1705,6 @@
             }
         }
 
-        // Hamburger Sidebar Functions
         function toggleSidebar() {
             playSoftClickSound();
             const sidebar = document.getElementById('appSidebar');
@@ -1775,7 +1718,6 @@
             }
         }
 
-        // Mini Games Logic
         let clickScoreVal = 0;
         function incrementClickScore() {
             playSoftClickSound();
@@ -1802,7 +1744,6 @@
             }
         }
 
-        // Developer Info Action Functions
         function copyDevInfo() {
             playSoftClickSound();
             const infoText = "Name: ইঞ্জিনিয়ার অমিত কুমার সাহা\nOccupation: ওয়েব ডেভেলপার\nEmail: asdtechzone@gmail.com\nPhone: +8801346105445";
@@ -1850,7 +1791,6 @@
             switchPage(targetPageId, targetBtn);
         }
 
-        // Keyboard Arrow Key Navigation Support
         document.addEventListener('keydown', function(event) {
             const loginOverlay = document.getElementById('loginOverlay');
             const lightbox = document.getElementById('lightbox');
@@ -1877,10 +1817,6 @@
             const targetPage = document.getElementById(pageId);
             if(targetPage) {
                 targetPage.classList.add('active-page');
-                // যদি কেক পেজে সুইচ করা হয়, তবে অটো মাইক্রোফোন এক্সেস ইনিশিয়ালাইজ করতে পারি
-                if(pageId === 'cakePage' && !isCakeCutOrBlown && !mediaStreamObj) {
-                    initMicrophone();
-                }
             }
             
             if (btnElement && btnElement.closest('.nav-buttons-container')) {
@@ -1934,73 +1870,15 @@
         }
         createBalloonsAndHearts();
 
-        let isCakeCutOrBlown = false;
-        let audioContext;
-        let analyser;
-        let microphone;
-        let javascriptNode;
-        let mediaStreamObj = null;
-
-        // পেজে ঢোকার সাথে সাথে অটোমেটিক মাইক্রোফোনের এক্সেস নেওয়ার ফাংশন
-        async function initMicrophone() {
-            try {
-                if (mediaStreamObj) return; // ইতিমধ্যে ইনিশিয়াল হলে আর দরকার নেই
-                mediaStreamObj = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                microphone = audioContext.createMediaStreamSource(mediaStreamObj);
-                
-                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
-                analyser.smoothingTimeConstant = 0.8;
-                analyser.fftSize = 1024;
-
-                microphone.connect(analyser);
-                analyser.connect(javascriptNode);
-                javascriptNode.connect(audioContext.destination);
-
-                javascriptNode.onaudioprocess = function() {
-                    if (isCakeCutOrBlown) return;
-
-                    const array = new Uint8Array(analyser.frequencyBinCount);
-                    analyser.getByteFrequencyData(array);
-                    let values = 0;
-                    
-                    for (let i = 0; i < array.length; i++) {
-                        values += array[i];
-                    }
-                    
-                    let average = values / array.length;
-
-                    // ফুঁ দেওয়ার আওয়াজ বা জোরে শব্দ শনাক্ত করার জন্য থ্রেশহোল্ড
-                    if (average > 35) {
-                        cutCake();
-                    }
-                };
-            } catch (error) {
-                console.error("মাইক্রোফোন এক্সেস পাওয়া যায়নি: ", error);
-                const instText = document.getElementById("instructionText");
-                if(instText) instText.innerText = "দয়া করে ব্রাউজারের মাইক্রোফোন পারমিশন অন করুন অথবা নিচের বাটনে ক্লিক করুন!";
-            }
-        }
-
         function cutCake() {
-            if (isCakeCutOrBlown) return;
-            isCakeCutOrBlown = true;
-
             playSoftClickSound();
             const cakeWrapper = document.getElementById('cakeWrapper');
             const wishText = document.getElementById('cakeWishText');
             const centerBox = document.getElementById('cakeSurpriseCenterBox');
             const cutBtn = document.getElementById('cutCakeBtn');
-            const candleFlame = document.getElementById('candleFlame');
-
-            // মোমবাতির আগুন নিভিয়ে ফেলা
-            if (candleFlame) candleFlame.classList.add('out');
-            const instructionText = document.getElementById('instructionText');
-            if (instructionText) instructionText.style.display = 'none';
 
             cakeWrapper.classList.add('cut-active');
-            if (cutBtn) cutBtn.style.display = 'none';
+            cutBtn.style.display = 'none';
 
             confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
 
@@ -2011,25 +1889,11 @@
             }, 1000);
             setTimeout(() => wishText.style.display = 'block', 1800);
 
-            // কেক কাটা শেষ হলে মাইক্রোফোন বন্ধ করে দেওয়া
-            if (mediaStreamObj) {
-                mediaStreamObj.getTracks().forEach(track => track.stop());
-            }
-            if (audioContext && audioContext.state !== 'closed') {
-                audioContext.close();
-            }
-
             const music = document.getElementById('bgMusic');
             music.play().then(() => {
                 document.getElementById('musicBtn').innerText = "⏸ Pause Birthday Song";
             }).catch(e => console.log(e));
         }
-
-        // উইন্ডো লোড হওয়ার সাথে সাথেই মাইক্রোফোন অন করার চেষ্টা করা
-        window.addEventListener('load', function() {
-            // ইউজার ইন্টারঅ্যাকশন ছাড়া অনেক ব্রাউজারে অটো মাইক্রোফোন ব্লক থাকে, তাই পেজের যেকোনো জায়গায় ক্লিক বা সরাসরি কল ট্রিগার হবে
-            initMicrophone();
-        });
 
         function startScrollCounter() {
             let count = 0;
