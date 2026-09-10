@@ -313,42 +313,11 @@
             align-items: center;
         }
 
-        /* Main Custom Menu Bar */
-        .main-menu-bar {
-            position: relative;
-            z-index: 150;
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 0 10px;
-        }
-
-        .menu-main-btn {
-            background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            color: #fff;
-            padding: 10px 22px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.95em;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .menu-main-btn:hover, .menu-main-btn.active-menu {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, #00f2fe 0%, #ff007f 100%);
-            border-color: #fff;
-            box-shadow: 0 6px 20px rgba(0, 243, 255, 0.6);
-        }
-
         /* Theme Control & Navigation Bar */
         .theme-switcher-container {
             position: relative;
             z-index: 100;
-            margin-top: 12px;
+            margin-top: 15px;
             display: flex;
             gap: 6px;
             justify-content: center;
@@ -687,7 +656,7 @@
             outline: none;
         }
 
-        /* Cake & Layer Text Styling */
+        /* Cake & Layer Text Styling (Fixed positioning and layout) */
         .cake-section-container {
             text-align: center;
             position: relative;
@@ -1142,85 +1111,6 @@
             text-align: right;
             opacity: 0.8;
         }
-
-        /* Wish Rain Game CSS */
-        .game-area-box {
-            position: relative;
-            width: 100%;
-            height: 350px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px dashed var(--accent-color);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-top: 15px;
-            cursor: crosshair;
-        }
-
-        .falling-item {
-            position: absolute;
-            font-size: 26px;
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.1s;
-            animation: fallItemAnim linear forwards;
-        }
-
-        @keyframes fallItemAnim {
-            0% { top: -40px; }
-            100% { top: 350px; }
-        }
-
-        /* About Developers Card CSS */
-        .developer-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 25px;
-            border-radius: 20px;
-            margin-top: 15px;
-            line-height: 1.8;
-            backdrop-filter: blur(10px);
-        }
-
-        .developer-card h3 {
-            color: var(--title-color);
-            margin-bottom: 12px;
-            font-size: 1.5em;
-            text-align: center;
-        }
-
-        .developer-card p {
-            margin-bottom: 8px;
-            font-size: 0.98em;
-        }
-
-        .dev-action-btns {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .dev-btn {
-            background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 15px rgba(255,0,127,0.4);
-            transition: 0.3s;
-        }
-
-        .dev-btn:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, #00f2fe 0%, #ff007f 100%);
-        }
     </style>
 </head>
 
@@ -1258,13 +1148,6 @@
         </audio>
         <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
 
-        <!-- Main Top Menu Bar (Games & About Developers) -->
-        <div class="main-menu-bar">
-            <button class="menu-main-btn active-menu" id="menuHomeBtn" onclick="switchMainMenu('homeContent', this)">🏠 Home / Wish</button>
-            <button class="menu-main-btn" id="menuGamesBtn" onclick="switchMainMenu('gamesContent', this)">🎮 Games</button>
-            <button class="menu-main-btn" id="menuDevBtn" onclick="switchMainMenu('devContent', this)">👨‍💻 About Developers</button>
-        </div>
-
         <!-- Theme Switcher Bar -->
         <div class="theme-switcher-container">
             <button class="theme-btn" onclick="setTheme('dark')">🌙 Dark Mode</button>
@@ -1272,320 +1155,266 @@
             <button class="theme-btn" onclick="setTheme('neon')">⚡ Neon Mode</button>
         </div>
 
-        <!-- Home Content Container -->
-        <div id="homeContent" class="main-content-section" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <!-- Wish Message (Page 1) -->
-            <div id="wishPage" class="page active-page">
-                <div class="wish-box">
-                    <h1>Happy Birthday, Orpa Saha! 🎂</h1>
-                    <div class="wish-card">
-                        <p><strong>My Dear Sister,</strong></p>
-                        <p>শুভ জন্মদিন! ঈশ্বর তোকে সবসময় হাসিখুশি, আনন্দিত এবং সুস্থ রাখুক। তুই আমাদের জীবনের অন্যতম বড় একটি
-                            আশীর্বাদ। তোর সব স্বপ্ন ও আশা যেন সবসময় সত্যি হয়!</p>
-                        <p>আজকের এই বিশেষ দিনটি তোর জন্য অনেক অনেক আনন্দ নিয়ে আসুক। তোর জন্য তৈরি আমার এই বিশেষ সারপ্রাইজ
-                            ওয়েবসাইটটি দেখে নে😎! ভালো লাগলে বলতে ভূলে যাস না যেনো । ❤️</p>
+        <!-- Wish Message (Page 1) -->
+        <div id="wishPage" class="page active-page">
+            <div class="wish-box">
+                <h1>Happy Birthday, Orpa Saha! 🎂</h1>
+                <div class="wish-card">
+                    <p><strong>My Dear Sister,</strong></p>
+                    <p>শুভ জন্মদিন! ঈশ্বর তোকে সবসময় হাসিখুশি, আনন্দিত এবং সুস্থ রাখুক। তুই আমাদের জীবনের অন্যতম বড় একটি
+                        আশীর্বাদ। তোর সব স্বপ্ন ও আশা যেন সবসময় সত্যি হয়!</p>
+                    <p>আজকের এই বিশেষ দিনটি তোর জন্য অনেক অনেক আনন্দ নিয়ে আসুক। তোর জন্য তৈরি আমার এই বিশেষ সারপ্রাইজ
+                        ওয়েবসাইটটি দেখে নে😎! ভালো লাগলে বলতে ভূলে যাস না যেনো । ❤️</p>
 
-                        <!-- Voice Note Wrapper (Centered) -->
-                        <div class="voice-note-wrapper">
-                            <!-- Voice Note Trigger Button -->
-                            <div id="voiceNoteTrigger" class="voice-note-trigger" onclick="toggleVoicePlayer()">
-                                <span>🎙️</span> দীপের ভয়েস মেসেজটি শুনতে এখানে ক্লিক করুন
-                            </div>
-
-                            <!-- Hidden Voice Player Container -->
-                            <div id="voicePlayerContainer" class="voice-player-container">
-                                <button class="voice-close-btn" onclick="toggleVoicePlayer()">&times;</button>
-                                <p>দ্বিপের কণ্ঠের বিশেষ ভয়েস নোট:</p>
-                                <audio id="dipVoiceAudio" controls>
-                                    <source src="dipvoice.mpeg" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            </div>
+                    <!-- Voice Note Wrapper (Centered) -->
+                    <div class="voice-note-wrapper">
+                        <!-- Voice Note Trigger Button -->
+                        <div id="voiceNoteTrigger" class="voice-note-trigger" onclick="toggleVoicePlayer()">
+                            <span>🎙️</span> দীপের ভয়েস মেসেজটি শুনতে এখানে ক্লিক করুন
                         </div>
 
-                        <div class="signature">— তোর ভাই দ্বিপ</div>
-                    </div>
-                </div>
-
-                <!-- Page Navigation Arrow Buttons -->
-                <div class="page-nav-arrows">
-                    <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
-                    <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
-                </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="nav-buttons-container">
-                <button class="crystal-btn active-btn" onclick="switchPage('wishPage', this)">💌 Wish Message</button>
-                <button class="crystal-btn" onclick="switchPage('cakePage', this)">🎂 Cake & Surprise</button>
-                <button class="crystal-btn" onclick="switchPage('ourMemoryPage', this)">📸 Our Memory</button>
-                <button class="crystal-btn" onclick="switchPage('ownMemoryPage', this)">👑 Own Memory</button>
-            </div>
-
-            <div class="single-btn-container">
-                <button class="crystal-btn special-video-btn" onclick="switchPage('videoPage', this)">🎬 Birthday Song &
-                    Sister Special</button>
-            </div>
-
-            <!-- Cake Section (Page 2) -->
-            <div id="cakePage" class="page">
-                <div class="cake-section-container">
-                    <h2 class="cake-title">Make a Wish & Cut the Cake! ✨</h2>
-                    <p class="cake-subtitle">নিচের বাটনে ক্লিক করে সুন্দর কেকটি কাটো!</p>
-
-                    <div class="modern-cake-wrapper" id="cakeWrapper">
-                        <div class="knife-cut-line"></div>
-                        <div class="candle-flame"></div>
-                        <div class="candle-stick"></div>
-                        <div class="tier tier-top">Happy</div>
-                        <div class="tier tier-middle">Birthday</div>
-                        <div class="tier tier-bottom">Orpa Saha</div>
-                    </div>
-
-                    <div class="cake-surprise-center-box" id="cakeSurpriseCenterBox">
-                        <div class="crystal-3d-glowing-frame">
-                            <img src="tepi5.jpeg" alt="Orpa 19th Birthday">
-                        </div>
-                        <div class="years-counter-container">
-                            <div class="years-counter-text" id="yearsCounterText">0 Years</div>
-                            <div class="years-welcome-msg" id="yearsWelcomeMsg">🎉 Welcome to 19 Years of Sweetness! 👑✨
-                            </div>
+                        <!-- Hidden Voice Player Container -->
+                        <div id="voicePlayerContainer" class="voice-player-container">
+                            <button class="voice-close-btn" onclick="toggleVoicePlayer()">&times;</button>
+                            <p>দ্বিপের কণ্ঠের বিশেষ ভয়েস নোট:</p>
+                            <audio id="dipVoiceAudio" controls>
+                                <source src="dipvoice.mpeg" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
                         </div>
                     </div>
 
-                    <button class="crystal-btn" id="cutCakeBtn" style="margin: 15px auto 0 auto;" onclick="cutCake()">🔪
-                        Click to Cut Cake</button>
-                    <h2 id="cakeWishText"
-                        style="margin-top: 15px; color: var(--title-color); display: none; font-size: 1.15em;">🎉 YAY! Happy
-                        Birthday Orpa! Let's Celebrate! 🥳🎈</h2>
-                </div>
-
-                <!-- Page Navigation Arrow Buttons -->
-                <div class="page-nav-arrows">
-                    <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
-                    <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
+                    <div class="signature">— তোর ভাই দ্বিপ</div>
                 </div>
             </div>
 
-            <!-- Our Memories Gallery (Page 3) -->
-            <div id="ourMemoryPage" class="page">
-                <h2 class="gallery-title">Our Memories (Amit & Orpa) 💕</h2>
-                <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
-                <div class="gallery-grid">
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi14.jpeg" alt="Memory 1">
-                        <p>Memory 1</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi13.jpeg" alt="Memory 2">
-                        <p>Memory 2</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi21.jpeg" alt="Memory 3">
-                        <p>Memory 3</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi20.jpeg" alt="Memory 4">
-                        <p>Memory 4</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi26.jpeg" alt="Memory 5">
-                        <p>Memory 5</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi7.jpeg" alt="Memory 6">
-                        <p>Memory 6</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi22.jpeg" alt="Memory 7">
-                        <p>Memory 7</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi19.jpeg" alt="Memory 8">
-                        <p>Memory 8</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi9.jpeg" alt="Memory 9">
-                        <p>Memory 9</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi24.jpeg" alt="Memory 10">
-                        <p>You & Ankita</p>
-                    </div>
-                </div>
-
-                <!-- Page Navigation Arrow Buttons -->
-                <div class="page-nav-arrows">
-                    <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
-                    <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
-                </div>
-            </div>
-
-            <!-- Own Memories Gallery (Page 4) -->
-            <div id="ownMemoryPage" class="page">
-                <h2 class="gallery-title">Orpa's Gallery 👑</h2>
-                <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
-                <div class="gallery-grid">
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi1.jpeg" alt="Orpa Photo 1">
-                        <p>Orpa Photo 1</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi2.jpeg" alt="Orpa Photo 2">
-                        <p>Orpa Photo 2</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi4.jpeg" alt="Orpa Photo 3">
-                        <p>Orpa Photo 3</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi6.jpeg" alt="Orpa Photo 4">
-                        <p>Orpa Photo 4</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi8.jpeg" alt="Orpa Photo 5">
-                        <p>Orpa Photo 5</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi10.jpeg" alt="Orpa Photo 6">
-                        <p>Orpa Photo 6</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi15.jpeg" alt="Orpa Photo 7">
-                        <p>Orpa Photo 7</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi23.jpeg" alt="Orpa Photo 8">
-                        <p>Orpa Photo 8</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi25.jpeg" alt="Orpa Photo 9">
-                        <p>Orpa Photo 9</p>
-                    </div>
-                    <div class="photo-card" onclick="openZoom(this)"><img src="tepi18.jpeg" alt="Orpa Photo 10">
-                        <p>Orpa Photo 10</p>
-                    </div>
-                </div>
-
-                <!-- Page Navigation Arrow Buttons -->
-                <div class="page-nav-arrows">
-                    <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
-                    <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
-                </div>
-            </div>
-
-            <!-- Video Page (Page 5) -->
-            <div id="videoPage" class="page">
-                <h2 class="gallery-title">Special Birthday Song 🎥</h2>
-                <p class="gallery-subtitle">ভিডিও উপভোগ করো এবং নিচের বাটনগুলোতে ক্লিক করে এক্সপ্লোর করো! ✨</p>
-
-                <div class="video-main-container">
-                    <div class="video-wrapper">
-                        <video id="wishVideo" controls playsinline muted>
-                            <source src="b_video.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="audio-volume-box">
-                        <label for="volumeSlider">🔊 Volume:</label>
-                        <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1"
-                            oninput="adjustAudioVolume(this.value)">
-                    </div>
-                </div>
-
-                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-                    <button class="crystal-btn special-video-btn" onclick="switchPage('bestSisterPage', this)">💖 Why You're
-                        the Best Sister</button>
-                    <button class="crystal-btn special-video-btn" onclick="switchPage('funQuizPage', this)">🎮 Fun Birthday
-                        Quiz</button>
-                </div>
-                <audio id="videoAudio" preload="auto">
-                    <source src="audio.mp3" type="audio/mpeg">
-                </audio>
-
-                <!-- Page Navigation Arrow Buttons -->
-                <div class="page-nav-arrows">
-                    <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
-                    <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
-                </div>
-            </div>
-
-            <!-- Why You're the Best Sister Page (Page 6) -->
-            <div id="bestSisterPage" class="page">
-                <h2 class="gallery-title">Why You're the Best Sister 💖</h2>
-                <p class="gallery-subtitle">ট্যাপ করে দেখে নাও কেন তুই সেরা!</p>
-                <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-                    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                        onclick="alert('তুই সবসময় আমার সব আবdar হাসিমুখে মেনে নেস! 🥰')">
-                        <h4 style="color: var(--title-color); margin-bottom: 6px;">🎁 Endless Support</h4>
-                        <p style="font-size: 0.88em;">আমার যেকোনো পরিস্থিতিতে সবসময় পাশে থাকার জন্য।</p>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                        onclick="alert('তোর সাথে কাটানো প্রতিটা মুহূর্ত হাসিতে ভরপুর থাকে! 😂')">
-                        <h4 style="color: var(--title-color); margin-bottom: 6px;">✨ Pure Joy</h4>
-                        <p style="font-size: 0.88em;">চারপাশটা সবসময় আনন্দময় ও মাতিয়ে রাখার জন্য।</p>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                        onclick="alert('আমার বিপদে-আপদে তুই সবার আগে ভরসা হয়ে দাঁড়াস! 🛡️')">
-                        <h4 style="color: var(--title-color); margin-bottom: 6px;">👑 Best Protector</h4>
-                        <p style="font-size: 0.88em;">আমার সেরা শুভাকাঙ্ক্ষী ও রক্ষমাতা হওয়ার জন্য।</p>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <button class="crystal-btn" onclick="switchPage('videoPage', this)"
-                        style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
-                </div>
-            </div>
-
-            <!-- Fun Birthday Quiz Page (Page 7) -->
-            <div id="funQuizPage" class="page">
-                <h2 class="gallery-title">Fun Birthday Quiz 🎮</h2>
-                <p class="gallery-subtitle">মজার মজার ৪টি প্রশ্নের উত্তর দিয়ে ফেলো!</p>
-                <div class="quiz-container" style="margin-top: 10px;">
-                    <div class="quiz-progress" id="quizProgress">প্রশ্ন ১ / ৪</div>
-                    <div class="quiz-question" id="quizQuestion">১. অর্পার জন্মদিনে সবচেয়ে বড় আকর্ষণ কোনটি?</div>
-                    <div class="quiz-options" id="quizOptions">
-                        <button class="quiz-btn" onclick="checkQuiz(0)">ক) কেক কাটা ও উৎসব</button>
-                        <button class="quiz-btn" onclick="checkQuiz(1)">খ) শুধু ঘুমানো</button>
-                        <button class="quiz-btn" onclick="checkQuiz(2)">গ) পড়াশোনা করা</button>
-                    </div>
-                    <div class="quiz-result" id="quizResult"></div>
-                </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <button class="crystal-btn" onclick="switchPage('videoPage', this)"
-                        style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
-                </div>
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
-        <!-- Games Content Section (2/3 mini-games including Wish Rain Game) -->
-        <div id="gamesContent" class="main-content-section" style="width: 92%; max-width: 750px; display: none; position: relative; z-index: 10; background: var(--page-bg); backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.25); margin-top: 15px;">
-            <h2 class="gallery-title">Orpa's Mini Games 🕹️</h2>
-            <p class="gallery-subtitle">নিচের গেমগুলো খেলে আনন্দ উপভোগ করো!</p>
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons-container">
+            <button class="crystal-btn active-btn" onclick="switchPage('wishPage', this)">💌 Wish Message</button>
+            <button class="crystal-btn" onclick="switchPage('cakePage', this)">🎂 Cake & Surprise</button>
+            <button class="crystal-btn" onclick="switchPage('ourMemoryPage', this)">📸 Our Memory</button>
+            <button class="crystal-btn" onclick="switchPage('ownMemoryPage', this)">👑 Own Memory</button>
+        </div>
 
-            <!-- Game 1: Wish Rain Game -->
-            <div class="quiz-container">
-                <h3 style="color: var(--title-color); margin-bottom: 5px;">🌟 Game 1: Wish Rain (Catch Hearts!)</h3>
-                <p style="font-size: 0.85em; margin-bottom: 10px;">পড়ে যাওয়া লাভ ও স্টারগুলোতে ক্লিক করে পয়েন্ট কুড়াও!</p>
-                <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 0.9em; margin-bottom: 5px;">
-                    <span id="wishScore">Score: 0</span>
-                    <button class="theme-btn" onclick="startWishRainGame()">Start Game</button>
+        <div class="single-btn-container">
+            <button class="crystal-btn special-video-btn" onclick="switchPage('videoPage', this)">🎬 Birthday Song &
+                Sister Special</button>
+        </div>
+
+        <!-- Cake Section (Page 2) -->
+        <div id="cakePage" class="page">
+            <div class="cake-section-container">
+                <h2 class="cake-title">Make a Wish & Cut the Cake! ✨</h2>
+                <p class="cake-subtitle">নিচের বাটনে ক্লিক করে সুন্দর কেকটি কাটো!</p>
+
+                <div class="modern-cake-wrapper" id="cakeWrapper">
+                    <div class="knife-cut-line"></div>
+                    <div class="candle-flame"></div>
+                    <div class="candle-stick"></div>
+                    <div class="tier tier-top">Happy</div>
+                    <div class="tier tier-middle">Birthday</div>
+                    <div class="tier tier-bottom">Orpa Saha</div>
                 </div>
-                <div class="game-area-box" id="wishRainArea"></div>
+
+                <div class="cake-surprise-center-box" id="cakeSurpriseCenterBox">
+                    <div class="crystal-3d-glowing-frame">
+                        <img src="tepi5.jpeg" alt="Orpa 19th Birthday">
+                    </div>
+                    <div class="years-counter-container">
+                        <div class="years-counter-text" id="yearsCounterText">0 Years</div>
+                        <div class="years-welcome-msg" id="yearsWelcomeMsg">🎉 Welcome to 19 Years of Sweetness! 👑✨
+                        </div>
+                    </div>
+                </div>
+
+                <button class="crystal-btn" id="cutCakeBtn" style="margin: 15px auto 0 auto;" onclick="cutCake()">🔪
+                    Click to Cut Cake</button>
+                <h2 id="cakeWishText"
+                    style="margin-top: 15px; color: var(--title-color); display: none; font-size: 1.15em;">🎉 YAY! Happy
+                    Birthday Orpa! Let's Celebrate! 🥳🎈</h2>
             </div>
 
-            <!-- Game 2: Quick Memory Emoji Match -->
-            <div class="quiz-container" style="margin-top: 20px;">
-                <h3 style="color: var(--title-color); margin-bottom: 5px;">🧩 Game 2: Quick Emoji Match</h3>
-                <p style="font-size: 0.85em; margin-bottom: 10px;">সঠিক ইমোজি মেলানোর সহজ মজার গেম!</p>
-                <div id="emojiGameBox" style="text-align: center; padding: 15px;">
-                    <p id="emojiTargetText" style="font-size: 1.1em; font-weight: bold; margin-bottom: 10px;">Find matching pair for: 💖</p>
-                    <div style="display: flex; justify-content: center; gap: 10px;" id="emojiOptionsContainer">
-                        <button class="quiz-btn" onclick="checkEmojiGame('💖')">💖</button>
-                        <button class="quiz-btn" onclick="checkEmojiGame('⭐')">⭐</button>
-                        <button class="quiz-btn" onclick="checkEmojiGame('🎂')">🎂</button>
-                    </div>
-                    <p id="emojiResultText" style="margin-top: 10px; font-weight: bold;"></p>
-                </div>
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
-        <!-- About Developers Content Section -->
-        <div id="devContent" class="main-content-section" style="width: 92%; max-width: 750px; display: none; position: relative; z-index: 10; background: var(--page-bg); backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.25); margin-top: 15px;">
-            <h2 class="gallery-title">About Developer 👨‍💻</h2>
-            <p class="gallery-subtitle">এই ওয়েবসাইটটির নির্মাতা সম্পর্কে তথ্য নিচে দেওয়া হলো</p>
-            
-            <div class="developer-card">
-                <h3>Engrr Amit Kumar Saha</h3>
-                <p><strong>Occupation:</strong> Web Developer</p>
-                <p><strong>Education:</strong> BSc in CSE at IUBAT University</p>
-                <p><strong>Email:</strong> <span id="devEmail">asdtechzone@gmail.com</span></p>
-                <p><strong>Phone Number:</strong> <span id="devPhone">01346105445</span></p>
-
-                <div class="dev-action-btns">
-                    <a href="tel:01346105445" class="dev-btn">📞 Call Now</a>
-                    <button class="dev-btn" onclick="copyDeveloperInfo()">📋 Copy Info</button>
+        <!-- Our Memories Gallery (Page 3) -->
+        <div id="ourMemoryPage" class="page">
+            <h2 class="gallery-title">Our Memories (Amit & Orpa) 💕</h2>
+            <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
+            <div class="gallery-grid">
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi14.jpeg" alt="Memory 1">
+                    <p>Memory 1</p>
                 </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi13.jpeg" alt="Memory 2">
+                    <p>Memory 2</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi21.jpeg" alt="Memory 3">
+                    <p>Memory 3</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi20.jpeg" alt="Memory 4">
+                    <p>Memory 4</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi26.jpeg" alt="Memory 5">
+                    <p>Memory 5</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi7.jpeg" alt="Memory 6">
+                    <p>Memory 6</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi22.jpeg" alt="Memory 7">
+                    <p>Memory 7</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi19.jpeg" alt="Memory 8">
+                    <p>Memory 8</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi9.jpeg" alt="Memory 9">
+                    <p>Memory 9</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi24.jpeg" alt="Memory 10">
+                    <p>You & Ankita</p>
+                </div>
+            </div>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
+            </div>
+        </div>
+
+        <!-- Own Memories Gallery (Page 4) -->
+        <div id="ownMemoryPage" class="page">
+            <h2 class="gallery-title">Orpa's Gallery 👑</h2>
+            <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
+            <div class="gallery-grid">
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi1.jpeg" alt="Orpa Photo 1">
+                    <p>Orpa Photo 1</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi2.jpeg" alt="Orpa Photo 2">
+                    <p>Orpa Photo 2</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi4.jpeg" alt="Orpa Photo 3">
+                    <p>Orpa Photo 3</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi6.jpeg" alt="Orpa Photo 4">
+                    <p>Orpa Photo 4</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi8.jpeg" alt="Orpa Photo 5">
+                    <p>Orpa Photo 5</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi10.jpeg" alt="Orpa Photo 6">
+                    <p>Orpa Photo 6</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi15.jpeg" alt="Orpa Photo 7">
+                    <p>Orpa Photo 7</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi23.jpeg" alt="Orpa Photo 8">
+                    <p>Orpa Photo 8</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi25.jpeg" alt="Orpa Photo 9">
+                    <p>Orpa Photo 9</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi18.jpeg" alt="Orpa Photo 10">
+                    <p>Orpa Photo 10</p>
+                </div>
+            </div>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
+            </div>
+        </div>
+
+        <!-- Video Page (Page 5) -->
+        <div id="videoPage" class="page">
+            <h2 class="gallery-title">Special Birthday Song 🎥</h2>
+            <p class="gallery-subtitle">ভিডিও উপভোগ করো এবং নিচের বাটনগুলোতে ক্লিক করে এক্সপ্লোর করো! ✨</p>
+
+            <div class="video-main-container">
+                <div class="video-wrapper">
+                    <video id="wishVideo" controls playsinline muted>
+                        <source src="b_video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="audio-volume-box">
+                    <label for="volumeSlider">🔊 Volume:</label>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1"
+                        oninput="adjustAudioVolume(this.value)">
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                <button class="crystal-btn special-video-btn" onclick="switchPage('bestSisterPage', this)">💖 Why You're
+                    the Best Sister</button>
+                <button class="crystal-btn special-video-btn" onclick="switchPage('funQuizPage', this)">🎮 Fun Birthday
+                    Quiz</button>
+            </div>
+            <audio id="videoAudio" preload="auto">
+                <source src="audio.mp3" type="audio/mpeg">
+            </audio>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
+            </div>
+        </div>
+
+        <!-- Why You're the Best Sister Page (Page 6) -->
+        <div id="bestSisterPage" class="page">
+            <h2 class="gallery-title">Why You're the Best Sister 💖</h2>
+            <p class="gallery-subtitle">ট্যাপ করে দেখে নাও কেন তুই সেরা!</p>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
+                    onclick="alert('তুই সবসময় আমার সব আবdar হাসিমুখে মেনে নেস! 🥰')">
+                    <h4 style="color: var(--title-color); margin-bottom: 6px;">🎁 Endless Support</h4>
+                    <p style="font-size: 0.88em;">আমার যেকোনো পরিস্থিতিতে সবসময় পাশে থাকার জন্য।</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
+                    onclick="alert('তোর সাথে কাটানো প্রতিটা মুহূর্ত হাসিতে ভরপুর থাকে! 😂')">
+                    <h4 style="color: var(--title-color); margin-bottom: 6px;">✨ Pure Joy</h4>
+                    <p style="font-size: 0.88em;">চারপাশটা সবসময় আনন্দময় ও মাতিয়ে রাখার জন্য।</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
+                    onclick="alert('আমার বিপদে-আপদে তুই সবার আগে ভরসা হয়ে দাঁড়াস! 🛡️')">
+                    <h4 style="color: var(--title-color); margin-bottom: 6px;">👑 Best Protector</h4>
+                    <p style="font-size: 0.88em;">আমার সেরা শুভাকাঙ্ক্ষী ও রক্ষমাতা হওয়ার জন্য।</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="crystal-btn" onclick="switchPage('videoPage', this)"
+                    style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
+            </div>
+        </div>
+
+        <!-- Fun Birthday Quiz Page (Page 7) -->
+        <div id="funQuizPage" class="page">
+            <h2 class="gallery-title">Fun Birthday Quiz 🎮</h2>
+            <p class="gallery-subtitle">মজার মজার ৪টি প্রশ্নের উত্তর দিয়ে ফেলো!</p>
+            <div class="quiz-container" style="margin-top: 10px;">
+                <div class="quiz-progress" id="quizProgress">প্রশ্ন ১ / ৪</div>
+                <div class="quiz-question" id="quizQuestion">১. অর্পার জন্মদিনে সবচেয়ে বড় আকর্ষণ কোনটি?</div>
+                <div class="quiz-options" id="quizOptions">
+                    <button class="quiz-btn" onclick="checkQuiz(0)">ক) কেক কাটা ও উৎসব</button>
+                    <button class="quiz-btn" onclick="checkQuiz(1)">খ) শুধু ঘুমানো</button>
+                    <button class="quiz-btn" onclick="checkQuiz(2)">গ) পড়াশোনা করা</button>
+                </div>
+                <div class="quiz-result" id="quizResult"></div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="crystal-btn" onclick="switchPage('videoPage', this)"
+                    style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
             </div>
         </div>
 
@@ -1695,23 +1524,6 @@
             }
         }
 
-        // Main Menu Switcher logic
-        function switchMainMenu(sectionId, btnEl) {
-            playSoftClickSound();
-            document.querySelectorAll('.main-content-section').forEach(sec => sec.style.display = 'none');
-            document.querySelectorAll('.main-menu-bar .menu-main-btn').forEach(b => b.classList.remove('active-menu'));
-
-            document.getElementById(sectionId).style.display = 'flex';
-            btnEl.classList.add('active-menu');
-
-            // Pause video if navigating away from home/wish section
-            if (sectionId !== 'homeContent') {
-                const video = document.getElementById('wishVideo');
-                const videoAudio = document.getElementById('videoAudio');
-                if (!video.paused) { video.pause(); videoAudio.pause(); }
-            }
-        }
-
         const pageSequence = ['wishPage', 'cakePage', 'ourMemoryPage', 'ownMemoryPage', 'videoPage'];
 
         function navigatePages(direction) {
@@ -1743,12 +1555,13 @@
             switchPage(targetPageId, targetBtn);
         }
 
+        // Keyboard Arrow Key Navigation Support
         document.addEventListener('keydown', function(event) {
+            // যদি ইউজার লগইন করা থাকে এবং লাইটবক্স বা ইনপুট ফিল্ড ওপেন না থাকে তবেই কাজ করবে
             const loginOverlay = document.getElementById('loginOverlay');
             const lightbox = document.getElementById('lightbox');
             if (loginOverlay && loginOverlay.style.display !== 'none') return;
             if (lightbox && lightbox.style.display === 'flex') return;
-            if (document.getElementById('gamesContent').style.display === 'flex' || document.getElementById('devContent').style.display === 'flex') return;
 
             if (event.key === 'ArrowRight') {
                 navigatePages('next');
@@ -1911,7 +1724,7 @@
 
         const quizData = [
             { q: "১. অর্পার জন্মদিনে সবচেয়ে বড় আকর্ষণ কোনটি?", options: ["ক) কেক কাটা ও উৎসব", "খ) শুধু ঘুমানো", "গ) পড়াশোনা করা"], correct: 0 },
-            { q: "২. দ্বিপের সাথে অর্পার সম্পর্কটি কীসের?", options: ["ক) বন্ধুত্বের", "খ) ভাই-বোনের", "গ) প্রতিবেশীর"], correct: 1 },
+            { q: "২. দ্বিপের সাথে অর্পার সম্পর্কটি কীসের?", options: ["k) বন্ধুত্বের", "খ) ভাই-বোনের", "গ) প্রতিবেশীর"], correct: 1 },
             { q: "৩. আজকের এই বিশেষ দিনটি কততম জন্মবার্ষিকী?", options: ["ক) ১৮ তম", "খ) ১৯ তম", "গ) ২০ তম"], correct: 1 },
             { q: "৪. অর্পা তার জন্মদিনে কেমন থাকতে সবচেয়ে বেশি পছন্দ করে?", options: ["ক) হাসিখুশি ও আনন্দিত", "খ) রাগী ও গম্ভীর", "গ) চুপচাপ"], correct: 0 }
         ];
@@ -1931,7 +1744,7 @@
                 }, 1800);
             } else {
                 resultEl.style.color = "#ff4081";
-                resultEl.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা কর। 😊";
+                resultInstEl.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা কর। 😊";
             }
         }
 
@@ -1947,70 +1760,6 @@
             document.getElementById('quizResult').innerText = "";
         }
         loadQuiz();
-
-        // Wish Rain Mini-Game Logic
-        let wishScore = 0;
-        let gameInterval = null;
-
-        function startWishRainGame() {
-            playSoftClickSound();
-            const area = document.getElementById('wishRainArea');
-            area.innerHTML = "";
-            wishScore = 0;
-            document.getElementById('wishScore').innerText = "Score: " + wishScore;
-
-            if(gameInterval) clearInterval(gameInterval);
-
-            const symbols = ['💖', '⭐', '🎂', '🎁', '✨'];
-
-            gameInterval = setInterval(() => {
-                if(area.children.length > 10) return;
-                const item = document.createElement('div');
-                item.className = 'falling-item';
-                item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-                item.style.left = Math.random() * (area.clientWidth - 40) + 'px';
-                item.style.animationDuration = (Math.random() * 2 + 2) + 's';
-
-                item.onclick = function() {
-                    playSoftClickSound();
-                    wishScore++;
-                    document.getElementById('wishScore').innerText = "Score: " + wishScore;
-                    confetti({ particleCount: 15, spread: 40, origin: { y: 0.5 } });
-                    item.remove();
-                };
-
-                item.onanimationend = function() {
-                    item.remove();
-                };
-
-                area.appendChild(item);
-            }, 600);
-        }
-
-        // Emoji Match Game Logic
-        function checkEmojiGame(selectedSymbol) {
-            playSoftClickSound();
-            const resultText = document.getElementById('emojiResultText');
-            if(selectedSymbol === '💖') {
-                resultText.style.color = "#39ff14";
-                resultText.innerText = "🎉 সঠিক হয়েছে! দারুন ম্যাচিং!";
-                confetti({ particleCount: 30, spread: 50 });
-            } else {
-                resultText.style.color = "#ff007f";
-                resultText.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা করো।";
-            }
-        }
-
-        // Copy Developer Info Function
-        function copyDeveloperInfo() {
-            playSoftClickSound();
-            const devInfo = `Name: Engrr Amit Kumar Saha\nOccupation: Web Developer\nEducation: BSc in CSE at IUBAT University\nEmail: asdtechzone@gmail.com\nPhone: 01346105445`;
-            navigator.clipboard.writeText(devInfo).then(() => {
-                alert("✅ Developer info copied to clipboard successfully!");
-            }).catch(err => {
-                alert("Failed to copy text.");
-            });
-        }
     </script>
 </body>
 
