@@ -105,6 +105,169 @@
             background-attachment: fixed;
         }
 
+        /* Hamburger Menu Styles */
+        .hamburger-menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: var(--text-color);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1002;
+            display: none;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background: rgba(16, 20, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(0, 243, 255, 0.3);
+            z-index: 1003;
+            transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .sidebar-header h3 {
+            color: #00f3ff;
+            font-size: 1.2em;
+        }
+
+        .sidebar-close {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sidebar-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: #00f3ff;
+            transform: translateX(5px);
+        }
+
+        /* Developer Info & Games Section Styles inside Pages */
+        .dev-info-card, .game-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .dev-info-item {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .dev-info-item strong {
+            color: var(--title-color);
+        }
+
+        .dev-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.3), rgba(255, 0, 127, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.5), rgba(255, 0, 127, 0.5));
+        }
+
+        /* Mini Games Styling */
+        .mini-game-container {
+            text-align: center;
+        }
+
+        .game-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--title-color);
+        }
+
         /* Floating Balloons & Hearts Animation */
         .balloon-container {
             position: fixed;
@@ -1143,6 +1306,30 @@
     <!-- Main Website Container (Hidden until logged in) -->
     <div id="mainWebsiteContainer">
 
+        <!-- Hamburger Menu Bar Integration -->
+        <button class="hamburger-menu-btn" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <div class="sidebar" id="appSidebar">
+            <div class="sidebar-header">
+                <h3>Menu</h3>
+                <button class="sidebar-close" onclick="toggleSidebar()">&times;</button>
+            </div>
+            <div class="sidebar-nav">
+                <button class="sidebar-link" onclick="switchPage('wishPage'); toggleSidebar();">💌 Wish Message</button>
+                <button class="sidebar-link" onclick="switchPage('cakePage'); toggleSidebar();">🎂 Cake & Surprise</button>
+                <button class="sidebar-link" onclick="switchPage('ourMemoryPage'); toggleSidebar();">📸 Our Memory</button>
+                <button class="sidebar-link" onclick="switchPage('ownMemoryPage'); toggleSidebar();">👑 Own Memory</button>
+                <button class="sidebar-link" onclick="switchPage('videoPage'); toggleSidebar();">🎬 Special Video</button>
+                <button class="sidebar-link" onclick="switchPage('gamesPage'); toggleSidebar();">🎮 Games Section</button>
+                <button class="sidebar-link" onclick="switchPage('aboutDevPage'); toggleSidebar();">👨‍💻 About Developers</button>
+            </div>
+        </div>
+
         <audio id="bgMusic" loop preload="auto">
             <source src="birthday.mp3" type="audio/mpeg">
         </audio>
@@ -1418,6 +1605,52 @@
             </div>
         </div>
 
+        <!-- Games Section Page -->
+        <div id="gamesPage" class="page">
+            <h2 class="gallery-title">Mini Games Zone 🕹️</h2>
+            <p class="gallery-subtitle">ছোটখাটো গেমস খেলে স্কোর করো!</p>
+            
+            <div class="game-card mini-game-container">
+                <h3 style="color: var(--title-color);">Click Counter Game</h3>
+                <p style="font-size: 0.85em; margin: 5px 0;">যত দ্রুত পারো ক্লিক করে স্কোর বাড়াও!</p>
+                <div class="game-display">Score: <span id="clickScore">0</span></div>
+                <button class="action-btn" onclick="incrementClickScore()">Click Me! 🚀</button>
+                <button class="action-btn" onclick="resetClickScore()" style="background: rgba(255,51,102,0.4);">Reset</button>
+            </div>
+
+            <div class="game-card mini-game-container">
+                <h3 style="color: var(--title-color);">Lucky Number Guess</h3>
+                <p style="font-size: 0.85em; margin: 5px 0;">১ থেকে ৫ এর মধ্যে একটি নাম্বার অনুমান করো!</p>
+                <div class="game-display" id="guessResultText">মেসেজ এখানে দেখাবে</div>
+                <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                    <button class="action-btn" onclick="guessNumber(1)">1</button>
+                    <button class="action-btn" onclick="guessNumber(2)">2</button>
+                    <button class="action-btn" onclick="guessNumber(3)">3</button>
+                    <button class="action-btn" onclick="guessNumber(4)">4</button>
+                    <button class="action-btn" onclick="guessNumber(5)">5</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Developers Section Page -->
+        <div id="aboutDevPage" class="page">
+            <h2 class="gallery-title">About Developer 👨‍💻</h2>
+            <p class="gallery-subtitle">ডেভেলপারের তথ্য নিচে দেওয়া হলো</p>
+
+            <div class="dev-info-card">
+                <div class="dev-info-item"><strong>Name:</strong> Engrr. Amit Kumar saha</div>
+                <div class="dev-info-item"><strong>Occupation:</strong> Web Developer</div>
+                <div class="dev-info-item"><strong>Email Address:</strong> <span id="devEmail">asdtechzone@gmail.com</span></div>
+                <div class="dev-info-item"><strong>Phone Number:</strong> <span id="devPhone">+8801346105445</span></div>
+
+                <div class="dev-actions">
+                    <button class="action-btn" onclick="copyDevInfo()">📋 Copy Text</button>
+                    <button class="action-btn" onclick="copyPhoneOnly()">📞 Copy Phone Number</button>
+                    <a href="tel:+8801346105445" style="text-decoration: none;"><button class="action-btn" style="background: linear-gradient(135deg, #39ff14, #00f2fe); color: #000;">☎️ Call Now</button></a>
+                </div>
+            </div>
+        </div>
+
         <!-- Lightbox Zoom Overlay -->
         <div class="lightbox" id="lightbox">
             <span class="lightbox-close" onclick="closeZoom()">&times;</span>
@@ -1524,7 +1757,65 @@
             }
         }
 
-        const pageSequence = ['wishPage', 'cakePage', 'ourMemoryPage', 'ownMemoryPage', 'videoPage'];
+        // Hamburger Sidebar Functions
+        function toggleSidebar() {
+            playSoftClickSound();
+            const sidebar = document.getElementById('appSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                overlay.style.display = 'none';
+            } else {
+                sidebar.classList.add('open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        // Mini Games Logic
+        let clickScoreVal = 0;
+        function incrementClickScore() {
+            playSoftClickSound();
+            clickScoreVal++;
+            document.getElementById('clickScore').innerText = clickScoreVal;
+        }
+        function resetClickScore() {
+            playSoftClickSound();
+            clickScoreVal = 0;
+            document.getElementById('clickScore').innerText = clickScoreVal;
+        }
+
+        function guessNumber(num) {
+            playSoftClickSound();
+            const randomNum = Math.floor(Math.random() * 5) + 1;
+            const resEl = document.getElementById('guessResultText');
+            if (num === randomNum) {
+                resEl.style.color = "#39ff14";
+                resEl.innerText = `🎉 অভিনন্দন! মিলে গেছে (స সঠিক: ${randomNum})`;
+                confetti({ particleCount: 40, spread: 50 });
+            } else {
+                resEl.style.color = "#ff3366";
+                resEl.innerText = `❌ হয়নি! সঠিক নাম্বার ছিল: ${randomNum}`;
+            }
+        }
+
+        // Developer Info Action Functions
+        function copyDevInfo() {
+            playSoftClickSound();
+            const infoText = "Name: ইঞ্জিনিয়ার অমিত কুমার সাহা\nOccupation: ওয়েব ডেভেলপার\nEmail: amit.developer@example.com\nPhone: +8801700000000";
+            navigator.clipboard.writeText(infoText).then(() => {
+                alert("ডویلপারের সমস্ত তথ্য কপি করা হয়েছে! ✅");
+            });
+        }
+
+        function copyPhoneOnly() {
+            playSoftClickSound();
+            const phoneText = "+8801700000000";
+            navigator.clipboard.writeText(phoneText).then(() => {
+                alert("ফোন নাম্বার কপি করা হয়েছে! 📞");
+            });
+        }
+
+        const pageSequence = ['wishPage', 'cakePage', 'ourMemoryPage', 'ownMemoryPage', 'videoPage', 'gamesPage', 'aboutDevPage'];
 
         function navigatePages(direction) {
             playSoftClickSound();
@@ -1557,7 +1848,6 @@
 
         // Keyboard Arrow Key Navigation Support
         document.addEventListener('keydown', function(event) {
-            // যদি ইউজার লগইন করা থাকে এবং লাইটবক্স বা ইনপুট ফিল্ড ওপেন না থাকে তবেই কাজ করবে
             const loginOverlay = document.getElementById('loginOverlay');
             const lightbox = document.getElementById('lightbox');
             if (loginOverlay && loginOverlay.style.display !== 'none') return;
@@ -1724,7 +2014,7 @@
 
         const quizData = [
             { q: "১. অর্পার জন্মদিনে সবচেয়ে বড় আকর্ষণ কোনটি?", options: ["ক) কেক কাটা ও উৎসব", "খ) শুধু ঘুমানো", "গ) পড়াশোনা করা"], correct: 0 },
-            { q: "২. দ্বিপের সাথে অর্পার সম্পর্কটি কীসের?", options: ["k) বন্ধুত্বের", "খ) ভাই-বোনের", "গ) প্রতিবেশীর"], correct: 1 },
+            { q: "২. দ্বিপের সাথে অর্পার সম্পর্কটি কীসের?", options: ["ক) বন্ধুত্বের", "খ) ভাই-বোনের", "গ) প্রতিবেশীর"], correct: 1 },
             { q: "৩. আজকের এই বিশেষ দিনটি কততম জন্মবার্ষিকী?", options: ["ক) ১৮ তম", "খ) ১৯ তম", "গ) ২০ তম"], correct: 1 },
             { q: "৪. অর্পা তার জন্মদিনে কেমন থাকতে সবচেয়ে বেশি পছন্দ করে?", options: ["ক) হাসিখুশি ও আনন্দিত", "খ) রাগী ও গম্ভীর", "গ) চুপচাপ"], correct: 0 }
         ];
@@ -1744,7 +2034,7 @@
                 }, 1800);
             } else {
                 resultEl.style.color = "#ff4081";
-                resultInstEl.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা কর। 😊";
+                resultEl.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা কর। 😊";
             }
         }
 
