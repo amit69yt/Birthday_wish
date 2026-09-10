@@ -926,6 +926,10 @@
             z-index: 11;
         }
 
+        .candle-flame.out {
+            display: none !important;
+        }
+
         @keyframes flameFlicker {
             0% {
                 transform: translateX(-50%) scale(1);
@@ -1395,15 +1399,15 @@
                 Sister Special</button>
         </div>
 
-        <!-- Cake Section (Page 2) -->
+        <!-- Cake Section (Page 2) - Auto Microphone & Blow/Cut Integration -->
         <div id="cakePage" class="page">
             <div class="cake-section-container">
-                <h2 class="cake-title">Make a Wish & Cut the Cake! ✨</h2>
-                <p class="cake-subtitle">নিচের বাটনে ক্লিক করে সুন্দর কেকটি কাটো!</p>
+                <h2 class="cake-title">Make a Wish & Blow/Cut the Cake! ✨</h2>
+                <p class="cake-subtitle" id="instructionText">মাইক্রোফোন অন আছে। ফুঁ দিয়ে অথবা বাটনে ক্লিক করে কেক কাটুন!</p>
 
                 <div class="modern-cake-wrapper" id="cakeWrapper">
                     <div class="knife-cut-line"></div>
-                    <div class="candle-flame"></div>
+                    <div class="candle-flame" id="candleFlame"></div>
                     <div class="candle-stick"></div>
                     <div class="tier tier-top">Happy</div>
                     <div class="tier tier-middle">Birthday</div>
@@ -1790,7 +1794,7 @@
             const resEl = document.getElementById('guessResultText');
             if (num === randomNum) {
                 resEl.style.color = "#39ff14";
-                resEl.innerText = `🎉 অভিনন্দন! মিলে গেছে (స সঠিক: ${randomNum})`;
+                resEl.innerText = `🎉 অভিনন্দন! মিলে গেছে (সঠিক: ${randomNum})`;
                 confetti({ particleCount: 40, spread: 50 });
             } else {
                 resEl.style.color = "#ff3366";
@@ -1801,15 +1805,15 @@
         // Developer Info Action Functions
         function copyDevInfo() {
             playSoftClickSound();
-            const infoText = "Name: ইঞ্জিনিয়ার অমিত কুমার সাহা\nOccupation: ওয়েব ডেভেলপার\nEmail: amit.developer@example.com\nPhone: +8801700000000";
+            const infoText = "Name: ইঞ্জিনিয়ার অমিত কুমার সাহা\nOccupation: ওয়েব ডেভেলপার\nEmail: asdtechzone@gmail.com\nPhone: +8801346105445";
             navigator.clipboard.writeText(infoText).then(() => {
-                alert("ডویلপারের সমস্ত তথ্য কপি করা হয়েছে! ✅");
+                alert("ডেভেলপারের সমস্ত তথ্য কপি করা হয়েছে! ✅");
             });
         }
 
         function copyPhoneOnly() {
             playSoftClickSound();
-            const phoneText = "+8801700000000";
+            const phoneText = "+8801346105445";
             navigator.clipboard.writeText(phoneText).then(() => {
                 alert("ফোন নাম্বার কপি করা হয়েছে! 📞");
             });
@@ -1873,6 +1877,10 @@
             const targetPage = document.getElementById(pageId);
             if(targetPage) {
                 targetPage.classList.add('active-page');
+                // যদি কেক পেজে সুইচ করা হয়, তবে অটো মাইক্রোফোন এক্সেস ইনিশিয়ালাইজ করতে পারি
+                if(pageId === 'cakePage' && !isCakeCutOrBlown && !mediaStreamObj) {
+                    initMicrophone();
+                }
             }
             
             if (btnElement && btnElement.closest('.nav-buttons-container')) {
@@ -1926,15 +1934,73 @@
         }
         createBalloonsAndHearts();
 
+        let isCakeCutOrBlown = false;
+        let audioContext;
+        let analyser;
+        let microphone;
+        let javascriptNode;
+        let mediaStreamObj = null;
+
+        // পেজে ঢোকার সাথে সাথে অটোমেটিক মাইক্রোফোনের এক্সেস নেওয়ার ফাংশন
+        async function initMicrophone() {
+            try {
+                if (mediaStreamObj) return; // ইতিমধ্যে ইনিশিয়াল হলে আর দরকার নেই
+                mediaStreamObj = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                microphone = audioContext.createMediaStreamSource(mediaStreamObj);
+                
+                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+                analyser.smoothingTimeConstant = 0.8;
+                analyser.fftSize = 1024;
+
+                microphone.connect(analyser);
+                analyser.connect(javascriptNode);
+                javascriptNode.connect(audioContext.destination);
+
+                javascriptNode.onaudioprocess = function() {
+                    if (isCakeCutOrBlown) return;
+
+                    const array = new Uint8Array(analyser.frequencyBinCount);
+                    analyser.getByteFrequencyData(array);
+                    let values = 0;
+                    
+                    for (let i = 0; i < array.length; i++) {
+                        values += array[i];
+                    }
+                    
+                    let average = values / array.length;
+
+                    // ফুঁ দেওয়ার আওয়াজ বা জোরে শব্দ শনাক্ত করার জন্য থ্রেশহোল্ড
+                    if (average > 35) {
+                        cutCake();
+                    }
+                };
+            } catch (error) {
+                console.error("মাইক্রোফোন এক্সেস পাওয়া যায়নি: ", error);
+                const instText = document.getElementById("instructionText");
+                if(instText) instText.innerText = "দয়া করে ব্রাউজারের মাইক্রোফোন পারমিশন অন করুন অথবা নিচের বাটনে ক্লিক করুন!";
+            }
+        }
+
         function cutCake() {
+            if (isCakeCutOrBlown) return;
+            isCakeCutOrBlown = true;
+
             playSoftClickSound();
             const cakeWrapper = document.getElementById('cakeWrapper');
             const wishText = document.getElementById('cakeWishText');
             const centerBox = document.getElementById('cakeSurpriseCenterBox');
             const cutBtn = document.getElementById('cutCakeBtn');
+            const candleFlame = document.getElementById('candleFlame');
+
+            // মোমবাতির আগুন নিভিয়ে ফেলা
+            if (candleFlame) candleFlame.classList.add('out');
+            const instructionText = document.getElementById('instructionText');
+            if (instructionText) instructionText.style.display = 'none';
 
             cakeWrapper.classList.add('cut-active');
-            cutBtn.style.display = 'none';
+            if (cutBtn) cutBtn.style.display = 'none';
 
             confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
 
@@ -1945,11 +2011,25 @@
             }, 1000);
             setTimeout(() => wishText.style.display = 'block', 1800);
 
+            // কেক কাটা শেষ হলে মাইক্রোফোন বন্ধ করে দেওয়া
+            if (mediaStreamObj) {
+                mediaStreamObj.getTracks().forEach(track => track.stop());
+            }
+            if (audioContext && audioContext.state !== 'closed') {
+                audioContext.close();
+            }
+
             const music = document.getElementById('bgMusic');
             music.play().then(() => {
                 document.getElementById('musicBtn').innerText = "⏸ Pause Birthday Song";
             }).catch(e => console.log(e));
         }
+
+        // উইন্ডো লোড হওয়ার সাথে সাথেই মাইক্রোফোন অন করার চেষ্টা করা
+        window.addEventListener('load', function() {
+            // ইউজার ইন্টারঅ্যাকশন ছাড়া অনেক ব্রাউজারে অটো মাইক্রোফোন ব্লক থাকে, তাই পেজের যেকোনো জায়গায় ক্লিক বা সরাসরি কল ট্রিগার হবে
+            initMicrophone();
+        });
 
         function startScrollCounter() {
             let count = 0;
