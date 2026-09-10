@@ -60,10 +60,12 @@
                 filter: hue-rotate(0deg);
                 box-shadow: 0 0 15px #ff007f;
             }
+
             50% {
                 filter: hue-rotate(180deg);
                 box-shadow: 0 0 25px #39ff14;
             }
+
             100% {
                 filter: hue-rotate(360deg);
                 box-shadow: 0 0 15px #00f2fe;
@@ -100,6 +102,7 @@
             align-items: center;
             padding-bottom: 60px;
             transition: background 0.5s ease, color 0.5s ease;
+            background-attachment: fixed;
         }
 
         /* Floating Balloons & Hearts Animation */
@@ -117,11 +120,12 @@
         .balloon {
             position: absolute;
             bottom: -100px;
-            width: 35px;
-            height: 50px;
+            width: 38px;
+            height: 52px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
             animation: floatUp 8s infinite linear;
-            opacity: 0.8;
+            opacity: 0.95;
+            box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2);
         }
 
         .floating-heart {
@@ -137,6 +141,7 @@
                 transform: translateY(0) rotate(0deg);
                 opacity: 0.8;
             }
+
             100% {
                 transform: translateY(-120vh) rotate(20deg);
                 opacity: 0;
@@ -148,123 +153,156 @@
                 transform: translateY(0) scale(0.8);
                 opacity: 0.7;
             }
+
             100% {
                 transform: translateY(-120vh) scale(1.2) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* Login Overlay Styles - Perfectly Centered & Responsive */
         #loginOverlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 5, 20, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-            transition: opacity 0.5s ease;
+            min-height: 100vh;
+            width: 100%;
+            background: radial-gradient(circle at center, rgba(27, 27, 58, 0.92) 0%, rgba(11, 15, 25, 0.95) 100%);
+            padding: 20px;
+            z-index: 5;
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            padding: 30px 20px;
-            border-radius: 25px;
+            background: rgba(16, 20, 35, 0.85);
+            padding: 40px;
+            border-radius: 20px;
             width: 100%;
-            max-width: 380px;
+            max-width: 420px;
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.25),
+                inset 0 0 15px rgba(255, 0, 128, 0.15);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            backdrop-filter: blur(10px);
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            animation: popIn3D 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .login-card h2 {
-            font-family: 'Playfair Display', serif;
-            color: #ffb6c1;
+            font-size: 28px;
             margin-bottom: 10px;
-            font-size: 1.8rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8),
+                0 0 20px rgba(0, 243, 255, 0.5);
         }
 
         .login-card p {
-            font-size: 0.9em;
-            margin-bottom: 20px;
-            opacity: 0.9;
-            line-height: 1.4;
-            color: #f3f4f6;
+            font-size: 14px;
+            color: #a0aec0;
+            margin-bottom: 25px;
         }
 
         .input-group {
-            margin-bottom: 16px;
             text-align: left;
+            margin-bottom: 22px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 0.85em;
+            font-size: 13px;
+            color: #00f3ff;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: #ffd1dc;
+            letter-spacing: 0.8px;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+            transition: all 0.3s ease;
         }
 
         .input-group input {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 16px;
+            background: rgba(10, 14, 26, 0.75);
+            border: 2px solid rgba(45, 55, 72, 0.8);
             border-radius: 12px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
+            color: #ffffff;
+            font-size: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: #4a5568;
+            transition: color 0.3s ease;
+        }
+
+        .input-group input:hover {
+            border-color: rgba(0, 243, 255, 0.4);
+            background: rgba(15, 20, 35, 0.85);
         }
 
         .input-group input:focus {
-            border-color: #ff4081;
-            box-shadow: 0 0 15px rgba(255, 64, 129, 0.4);
-            background: rgba(255, 255, 255, 0.18);
+            outline: none;
+            border-color: #00f3ff;
+            background: rgba(5, 8, 15, 0.95);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4),
+                inset 0 0 10px rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         .login-error {
-            color: #ff6b9e;
-            font-size: 0.82em;
-            margin-bottom: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            color: #ff3366;
+            margin-bottom: 15px;
             display: none;
-            background: rgba(255, 0, 0, 0.1);
-            padding: 6px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 75, 145, 0.3);
+            text-shadow: 0 0 5px rgba(255, 51, 102, 0.4);
         }
 
         .login-btn {
+            position: relative;
             width: 100%;
-            background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: #fff;
-            padding: 12px;
-            border-radius: 40px;
-            font-size: 1rem;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.25), rgba(255, 0, 127, 0.25));
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 18px;
             font-weight: 700;
+            letter-spacing: 0.8px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 0, 127, 0.4);
-            transition: all 0.3s ease;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7),
+                inset 0 3px 6px rgba(255, 255, 255, 0.8),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(0, 243, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transition: 0.6s ease-in-out;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
         }
 
         .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(255, 0, 127, 0.7);
+            transform: translateY(-5px) scale(1.02);
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.45), rgba(255, 0, 127, 0.45));
+            border-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8),
+                inset 0 4px 8px rgba(255, 255, 255, 1),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 243, 255, 0.8),
+                0 0 30px rgba(255, 0, 127, 0.8);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         /* Main content hidden until login */
@@ -275,7 +313,7 @@
             align-items: center;
         }
 
-        /* Theme Control & Navigation Bar - Mobile Optimized */
+        /* Theme Control & Navigation Bar */
         .theme-switcher-container {
             position: relative;
             z-index: 100;
@@ -372,6 +410,7 @@
             0% {
                 box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
             }
+
             100% {
                 box-shadow: 0 0 25px rgba(255, 0, 127, 0.9);
             }
@@ -382,9 +421,17 @@
         }
 
         @keyframes spin360 {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.08); }
-            100% { transform: rotate(360deg) scale(1); }
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.08);
+            }
+
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
         }
 
         .music-btn {
@@ -414,7 +461,7 @@
             background: var(--page-bg);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            padding: 20px 15px;
+            padding: 20px 15px 60px 15px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -423,7 +470,7 @@
 
         @media (min-width: 768px) {
             .page {
-                padding: 35px 30px;
+                padding: 35px 30px 65px 30px;
                 border-radius: 30px;
             }
         }
@@ -439,6 +486,7 @@
                 transform: translateY(20px) scale(0.98);
                 filter: blur(4px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -446,7 +494,44 @@
             }
         }
 
-        h1, h2 {
+        /* Middle Bottom Round Navigation Arrow Buttons CSS */
+        .page-nav-arrows {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 30;
+        }
+
+        .round-arrow-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--btn-bg);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: var(--text-color);
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .round-arrow-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.8), rgba(199, 21, 133, 0.8));
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 6px 20px rgba(255, 75, 145, 0.4);
+        }
+
+        h1,
+        h2 {
             font-family: 'Playfair Display', serif;
         }
 
@@ -482,52 +567,62 @@
             font-size: 1.05em;
         }
 
-        /* Voice Note Link & Modal/Container Styling - Mobile Adaptive */
+        /* Voice Note Container Styling */
         .voice-note-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative;
             width: 100%;
-            margin-top: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
         }
 
         .voice-note-trigger {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 12px 18px;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(199, 21, 133, 0.2));
+            border: 1.5px dashed var(--accent-color);
+            padding: 12px 20px;
             border-radius: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-color);
             cursor: pointer;
-            color: var(--title-color);
+            font-size: 14px;
             font-weight: 600;
-            font-size: 0.9em;
-            text-align: center;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 75, 145, 0.2);
+        }
+
+        .voice-note-trigger:hover {
+            border-color: var(--title-color);
+            box-shadow: 0 0 20px rgba(255, 75, 145, 0.4);
+            transform: translateY(-2px);
         }
 
         .voice-player-container {
             display: none;
-            margin-top: 15px;
-            background: rgba(40, 20, 35, 0.95);
-            padding: 15px;
-            border-radius: 12px;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.4);
             width: 100%;
-            max-width: 400px;
-            animation: popIn3D 0.4s ease forwards;
+            background: rgba(20, 20, 35, 0.9);
+            border: 2px solid var(--accent-color);
+            border-radius: 16px;
+            padding: 20px 15px 15px 15px;
+            margin-top: 15px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 75, 145, 0.2);
             text-align: center;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
+            animation: fadeInPlayer 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .voice-player-container audio {
-            width: 100%;
-            height: 38px;
-            accent-color: var(--accent-color);
-            margin-top: 8px;
+        @keyframes fadeInPlayer {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .voice-close-btn {
@@ -537,28 +632,52 @@
             background: transparent;
             border: none;
             color: var(--text-color);
-            font-size: 1.3em;
-            cursor: pointer;
+            font-size: 20px;
             font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* Cake & Layer Text Styling */
+        .voice-close-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        .voice-player-container p {
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            color: var(--title-color) !important;
+            font-weight: 600;
+        }
+
+        .voice-player-container audio {
+            width: 100%;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        /* Cake & Layer Text Styling (Fixed positioning and layout) */
         .cake-section-container {
             text-align: center;
             position: relative;
-            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 420px;
+            padding-bottom: 20px;
         }
 
         .cake-title {
             font-size: clamp(1.5em, 3.5vw, 2.1em);
             color: var(--title-color);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .cake-subtitle {
             font-size: 0.9em;
             color: var(--text-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             opacity: 0.9;
         }
 
@@ -566,15 +685,17 @@
             position: relative;
             width: 220px;
             height: 220px;
-            margin: 25px auto;
-            transition: opacity 4s ease, transform 4s ease, filter 4s ease;
+            margin: 15px auto;
+            transition: opacity 1s ease, transform 1s ease, filter 1s ease;
         }
 
         .modern-cake-wrapper.vanish-5s {
             opacity: 0 !important;
-            transform: scale(0.4) translateY(-30px) !important;
+            transform: scale(0.4) translateY(-20px) !important;
             filter: blur(15px) !important;
             pointer-events: none;
+            position: absolute;
+            visibility: hidden;
         }
 
         .tier {
@@ -643,8 +764,13 @@
         }
 
         @keyframes flameFlicker {
-            0% { transform: translateX(-50%) scale(1); }
-            100% { transform: translateX(-50%) scale(1.15); }
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1.15);
+            }
         }
 
         .knife-cut-line {
@@ -659,9 +785,20 @@
         }
 
         @keyframes knifeSlice {
-            0% { height: 0px; opacity: 1; }
-            50% { height: 220px; opacity: 1; }
-            100% { height: 220px; opacity: 0; }
+            0% {
+                height: 0px;
+                opacity: 1;
+            }
+
+            50% {
+                height: 220px;
+                opacity: 1;
+            }
+
+            100% {
+                height: 220px;
+                opacity: 0;
+            }
         }
 
         .cut-active .knife-cut-line {
@@ -694,10 +831,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
+            margin: 5px auto 0 auto;
             z-index: 20;
             width: 100%;
             animation: popIn3D 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -706,20 +841,21 @@
         @keyframes popIn3D {
             0% {
                 opacity: 0;
-                transform: translateX(-50%) scale(0.3) translateY(30px);
+                transform: scale(0.3) translateY(20px);
             }
+
             100% {
                 opacity: 1;
-                transform: translateX(-50%) scale(1) translateY(0);
+                transform: scale(1) translateY(0);
             }
         }
 
         .crystal-3d-glowing-frame {
             position: relative;
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            padding: 6px;
+            padding: 5px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(12px);
             border: 2px solid rgba(255, 255, 255, 0.8);
@@ -728,8 +864,8 @@
 
         @media (min-width: 768px) {
             .crystal-3d-glowing-frame {
-                width: 190px;
-                height: 190px;
+                width: 175px;
+                height: 175px;
             }
         }
 
@@ -741,26 +877,27 @@
         }
 
         .years-counter-container {
-            margin-top: 12px;
+            margin-top: 8px;
             text-align: center;
         }
 
         .years-counter-text {
-            font-size: 2.2em;
+            font-size: 1.8em;
             font-weight: 800;
             color: var(--text-color);
             text-shadow: 0 0 15px var(--accent-color);
         }
 
         .years-welcome-msg {
-            font-size: 1.05em;
+            font-size: 0.95em;
             color: var(--title-color);
             opacity: 0;
             transition: opacity 1s ease-in;
             font-weight: 650;
+            margin-top: 2px;
         }
 
-        /* Gallery Grid Styling - Mobile Optimized */
+        /* Gallery Grid Styling */
         .gallery-title {
             text-align: center;
             color: var(--title-color);
@@ -869,8 +1006,13 @@
             border-radius: 50%;
         }
 
-        .lightbox-prev { left: 15px; }
-        .lightbox-next { right: 15px; }
+        .lightbox-prev {
+            left: 15px;
+        }
+
+        .lightbox-next {
+            right: 15px;
+        }
 
         .video-main-container {
             position: relative;
@@ -980,16 +1122,20 @@
     <div id="loginOverlay">
         <div class="login-card">
             <h2>Welcome! ✨</h2>
-            <p>ওয়েবসাইটটিতে প্রবেশ করতে তোমার নাম ও পাসওয়ার্ড দাও</p>
+            <p>ওয়েবসাইটটিতে প্রবেশ করতে তোমার নাম ও পাসওয়ার্ড দাও</p>
+
             <div class="input-group">
                 <label for="loginName">Your Name</label>
                 <input type="text" id="loginName" placeholder="Enter your name">
             </div>
+
             <div class="input-group">
                 <label for="loginPassword">Password</label>
                 <input type="password" id="loginPassword" placeholder="Enter password">
             </div>
-            <div class="login-error" id="loginError">❌ নাম অথবা পাসওয়ার্ড ভুল হয়েছে! আবার চেষ্টা কর।</div>
+
+            <div class="login-error" id="loginError">❌ নাম অথবা পাসওয়ার্ড ভুল হয়েছে! আবার চেষ্টা কর।</div>
+
             <button class="login-btn" onclick="checkLogin()">Login Now 🚀</button>
         </div>
     </div>
@@ -1015,8 +1161,10 @@
                 <h1>Happy Birthday, Orpa Saha! 🎂</h1>
                 <div class="wish-card">
                     <p><strong>My Dear Sister,</strong></p>
-                    <p>শুভ জন্মদিন! ঈশ্বর তোকে সবসময় হাসিখুশি, আনন্দিত এবং সুস্থ রাখুক। তুই আমাদের জীবনের অন্যতম বড় একটি আশীর্বাদ। তোর সব স্বপ্ন ও আশা যেন সবসময় সত্যি হয়!</p>
-                    <p>আজকের এই বিশেষ দিনটি তোর জন্য অনেক অনেক আনন্দ নিয়ে আসুক। তোর জন্য তৈরি আমার এই বিশেষ সারপ্রাইজ ওয়েবসাইটটি দেখে নে😎! ভালো লাগলে বলতে ভূলে যাস না যেনো । ❤️</p>
+                    <p>শুভ জন্মদিন! ঈশ্বর তোকে সবসময় হাসিখুশি, আনন্দিত এবং সুস্থ রাখুক। তুই আমাদের জীবনের অন্যতম বড় একটি
+                        আশীর্বাদ। তোর সব স্বপ্ন ও আশা যেন সবসময় সত্যি হয়!</p>
+                    <p>আজকের এই বিশেষ দিনটি তোর জন্য অনেক অনেক আনন্দ নিয়ে আসুক। তোর জন্য তৈরি আমার এই বিশেষ সারপ্রাইজ
+                        ওয়েবসাইটটি দেখে নে😎! ভালো লাগলে বলতে ভূলে যাস না যেনো । ❤️</p>
 
                     <!-- Voice Note Wrapper (Centered) -->
                     <div class="voice-note-wrapper">
@@ -1025,10 +1173,10 @@
                             <span>🎙️</span> দীপের ভয়েস মেসেজটি শুনতে এখানে ক্লিক করুন
                         </div>
 
-                        <!-- Hidden Voice Player Container with Cross Button and Path dipvoice.mp3 -->
+                        <!-- Hidden Voice Player Container -->
                         <div id="voicePlayerContainer" class="voice-player-container">
                             <button class="voice-close-btn" onclick="toggleVoicePlayer()">&times;</button>
-                            <p style="font-size: 0.85em; margin-bottom: 6px; color: var(--title-color);">দ্বিপের কণ্ঠের বিশেষ ভয়েস নোট:</p>
+                            <p>দ্বিপের কণ্ঠের বিশেষ ভয়েস নোট:</p>
                             <audio id="dipVoiceAudio" controls>
                                 <source src="dipvoice.mpeg" type="audio/mpeg">
                                 Your browser does not support the audio element.
@@ -1038,6 +1186,12 @@
 
                     <div class="signature">— তোর ভাই দ্বিপ</div>
                 </div>
+            </div>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
@@ -1050,7 +1204,8 @@
         </div>
 
         <div class="single-btn-container">
-            <button class="crystal-btn special-video-btn" onclick="switchPage('videoPage', this)">🎬 Birthday Song & Sister Special</button>
+            <button class="crystal-btn special-video-btn" onclick="switchPage('videoPage', this)">🎬 Birthday Song &
+                Sister Special</button>
         </div>
 
         <!-- Cake Section (Page 2) -->
@@ -1068,19 +1223,28 @@
                     <div class="tier tier-bottom">Orpa Saha</div>
                 </div>
 
-                <!-- Surprise Center Box with 3D Crystal Glowing Frame & Years Scroll Counter -->
                 <div class="cake-surprise-center-box" id="cakeSurpriseCenterBox">
                     <div class="crystal-3d-glowing-frame">
                         <img src="tepi5.jpeg" alt="Orpa 19th Birthday">
                     </div>
                     <div class="years-counter-container">
                         <div class="years-counter-text" id="yearsCounterText">0 Years</div>
-                        <div class="years-welcome-msg" id="yearsWelcomeMsg">🎉 Welcome to 19 Years of Sweetness! 👑✨</div>
+                        <div class="years-welcome-msg" id="yearsWelcomeMsg">🎉 Welcome to 19 Years of Sweetness! 👑✨
+                        </div>
                     </div>
                 </div>
 
-                <button class="crystal-btn" id="cutCakeBtn" style="margin: 20px auto 0 auto;" onclick="cutCake()">🔪 Click to Cut Cake</button>
-                <h2 id="cakeWishText" style="margin-top: 40px; color: var(--title-color); display: none; font-size: 1.3em;">🎉 YAY! Happy Birthday Orpa! Let's Celebrate! 🥳🎈</h2>
+                <button class="crystal-btn" id="cutCakeBtn" style="margin: 15px auto 0 auto;" onclick="cutCake()">🔪
+                    Click to Cut Cake</button>
+                <h2 id="cakeWishText"
+                    style="margin-top: 15px; color: var(--title-color); display: none; font-size: 1.15em;">🎉 YAY! Happy
+                    Birthday Orpa! Let's Celebrate! 🥳🎈</h2>
+            </div>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
@@ -1089,16 +1253,42 @@
             <h2 class="gallery-title">Our Memories (Amit & Orpa) 💕</h2>
             <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
             <div class="gallery-grid">
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi14.jpeg" alt="Memory 1"><p>Memory 1</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi13.jpeg" alt="Memory 2"><p>Memory 2</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi21.jpeg" alt="Memory 3"><p>Memory 3</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi20.jpeg" alt="Memory 4"><p>Memory 4</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi26.jpeg" alt="Memory 5"><p>Memory 5</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi7.jpeg" alt="Memory 6"><p>Memory 6</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi22.jpeg" alt="Memory 7"><p>Memory 7</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi19.jpeg" alt="Memory 8"><p>Memory 8</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi9.jpeg" alt="Memory 9"><p>Memory 9</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi24.jpeg" alt="Memory 10"><p>You & Ankita</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi14.jpeg" alt="Memory 1">
+                    <p>Memory 1</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi13.jpeg" alt="Memory 2">
+                    <p>Memory 2</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi21.jpeg" alt="Memory 3">
+                    <p>Memory 3</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi20.jpeg" alt="Memory 4">
+                    <p>Memory 4</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi26.jpeg" alt="Memory 5">
+                    <p>Memory 5</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi7.jpeg" alt="Memory 6">
+                    <p>Memory 6</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi22.jpeg" alt="Memory 7">
+                    <p>Memory 7</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi19.jpeg" alt="Memory 8">
+                    <p>Memory 8</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi9.jpeg" alt="Memory 9">
+                    <p>Memory 9</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi24.jpeg" alt="Memory 10">
+                    <p>You & Ankita</p>
+                </div>
+            </div>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
@@ -1107,16 +1297,42 @@
             <h2 class="gallery-title">Orpa's Gallery 👑</h2>
             <p class="gallery-subtitle">যেকোনো ছবিতে ক্লিক করে বড় করে দেখে নাও!</p>
             <div class="gallery-grid">
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi1.jpeg" alt="Orpa Photo 1"><p>Orpa Photo 1</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi2.jpeg" alt="Orpa Photo 2"><p>Orpa Photo 2</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi4.jpeg" alt="Orpa Photo 3"><p>Orpa Photo 3</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi6.jpeg" alt="Orpa Photo 4"><p>Orpa Photo 4</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi8.jpeg" alt="Orpa Photo 5"><p>Orpa Photo 5</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi10.jpeg" alt="Orpa Photo 6"><p>Orpa Photo 6</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi15.jpeg" alt="Orpa Photo 7"><p>Orpa Photo 7</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi23.jpeg" alt="Orpa Photo 8"><p>Orpa Photo 8</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi25.jpeg" alt="Orpa Photo 9"><p>Orpa Photo 9</p></div>
-                <div class="photo-card" onclick="openZoom(this)"><img src="tepi18.jpeg" alt="Orpa Photo 10"><p>Orpa Photo 10</p></div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi1.jpeg" alt="Orpa Photo 1">
+                    <p>Orpa Photo 1</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi2.jpeg" alt="Orpa Photo 2">
+                    <p>Orpa Photo 2</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi4.jpeg" alt="Orpa Photo 3">
+                    <p>Orpa Photo 3</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi6.jpeg" alt="Orpa Photo 4">
+                    <p>Orpa Photo 4</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi8.jpeg" alt="Orpa Photo 5">
+                    <p>Orpa Photo 5</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi10.jpeg" alt="Orpa Photo 6">
+                    <p>Orpa Photo 6</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi15.jpeg" alt="Orpa Photo 7">
+                    <p>Orpa Photo 7</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi23.jpeg" alt="Orpa Photo 8">
+                    <p>Orpa Photo 8</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi25.jpeg" alt="Orpa Photo 9">
+                    <p>Orpa Photo 9</p>
+                </div>
+                <div class="photo-card" onclick="openZoom(this)"><img src="tepi18.jpeg" alt="Orpa Photo 10">
+                    <p>Orpa Photo 10</p>
+                </div>
+            </div>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
             </div>
         </div>
 
@@ -1139,12 +1355,20 @@
             </div>
 
             <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-                <button class="crystal-btn special-video-btn" onclick="switchPage('bestSisterPage', this)">💖 Why You're the Best Sister</button>
-                <button class="crystal-btn special-video-btn" onclick="switchPage('funQuizPage', this)">🎮 Fun Birthday Quiz</button>
+                <button class="crystal-btn special-video-btn" onclick="switchPage('bestSisterPage', this)">💖 Why You're
+                    the Best Sister</button>
+                <button class="crystal-btn special-video-btn" onclick="switchPage('funQuizPage', this)">🎮 Fun Birthday
+                    Quiz</button>
             </div>
             <audio id="videoAudio" preload="auto">
                 <source src="audio.mp3" type="audio/mpeg">
             </audio>
+
+            <!-- Page Navigation Arrow Buttons -->
+            <div class="page-nav-arrows">
+                <button class="round-arrow-btn" onclick="navigatePages('prev')" title="Previous Page">&#10094;</button>
+                <button class="round-arrow-btn" onclick="navigatePages('next')" title="Next Page">&#10095;</button>
+            </div>
         </div>
 
         <!-- Why You're the Best Sister Page (Page 6) -->
@@ -1153,7 +1377,7 @@
             <p class="gallery-subtitle">ট্যাপ করে দেখে নাও কেন তুই সেরা!</p>
             <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
                 <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);"
-                    onclick="alert('তুই সবসময় আমার সব আবদার হাসিমুখে মেনে নেস! 🥰')">
+                    onclick="alert('তুই সবসময় আমার সব আবdar হাসিমুখে মেনে নেস! 🥰')">
                     <h4 style="color: var(--title-color); margin-bottom: 6px;">🎁 Endless Support</h4>
                     <p style="font-size: 0.88em;">আমার যেকোনো পরিস্থিতিতে সবসময় পাশে থাকার জন্য।</p>
                 </div>
@@ -1169,7 +1393,8 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button class="crystal-btn" onclick="switchPage('videoPage', this)" style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
+                <button class="crystal-btn" onclick="switchPage('videoPage', this)"
+                    style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
             </div>
         </div>
 
@@ -1188,7 +1413,8 @@
                 <div class="quiz-result" id="quizResult"></div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button class="crystal-btn" onclick="switchPage('videoPage', this)" style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
+                <button class="crystal-btn" onclick="switchPage('videoPage', this)"
+                    style="display: inline-flex; margin: 0 auto;">⬅️ Back to Video</button>
             </div>
         </div>
 
@@ -1204,6 +1430,29 @@
 
     <!-- JavaScript Logic -->
     <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            createBalloonsAndHearts();
+
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainWebsiteContainer').style.display = 'flex';
+            }
+        });
+
+        document.getElementById('loginName').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('loginPassword').focus();
+            }
+        });
+
+        document.getElementById('loginPassword').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkLogin();
+            }
+        });
+
         function checkLogin() {
             const nameInput = document.getElementById('loginName').value.trim().toLowerCase();
             const passInput = document.getElementById('loginPassword').value.trim().toLowerCase();
@@ -1212,7 +1461,9 @@
             if (nameInput === 'orpa' && passInput === 'dip') {
                 playSoftClickSound();
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-                
+
+                sessionStorage.setItem('isLoggedIn', 'true');
+
                 const overlay = document.getElementById('loginOverlay');
                 overlay.style.opacity = '0';
                 setTimeout(() => {
@@ -1273,6 +1524,52 @@
             }
         }
 
+        const pageSequence = ['wishPage', 'cakePage', 'ourMemoryPage', 'ownMemoryPage', 'videoPage'];
+
+        function navigatePages(direction) {
+            playSoftClickSound();
+            const activePageEl = document.querySelector('.page.active-page');
+            if (!activePageEl) return;
+            const currentId = activePageEl.id;
+            let currentIndex = pageSequence.indexOf(currentId);
+
+            if (currentIndex === -1) {
+                switchPage('videoPage');
+                return;
+            }
+
+            if (direction === 'next') {
+                currentIndex = (currentIndex + 1) % pageSequence.length;
+            } else if (direction === 'prev') {
+                currentIndex = (currentIndex - 1 + pageSequence.length) % pageSequence.length;
+            }
+
+            const targetPageId = pageSequence[currentIndex];
+            let targetBtn = null;
+            document.querySelectorAll('.nav-buttons-container .crystal-btn, .single-btn-container .crystal-btn').forEach(b => {
+                if(b.getAttribute('onclick') && b.getAttribute('onclick').includes(targetPageId)) {
+                    targetBtn = b;
+                }
+            });
+
+            switchPage(targetPageId, targetBtn);
+        }
+
+        // Keyboard Arrow Key Navigation Support
+        document.addEventListener('keydown', function(event) {
+            // যদি ইউজার লগইন করা থাকে এবং লাইটবক্স বা ইনপুট ফিল্ড ওপেন না থাকে তবেই কাজ করবে
+            const loginOverlay = document.getElementById('loginOverlay');
+            const lightbox = document.getElementById('lightbox');
+            if (loginOverlay && loginOverlay.style.display !== 'none') return;
+            if (lightbox && lightbox.style.display === 'flex') return;
+
+            if (event.key === 'ArrowRight') {
+                navigatePages('next');
+            } else if (event.key === 'ArrowLeft') {
+                navigatePages('prev');
+            }
+        });
+
         function switchPage(pageId, btnElement) {
             playSoftClickSound();
             if (btnElement && btnElement.classList.contains('crystal-btn')) {
@@ -1283,9 +1580,19 @@
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
             document.querySelectorAll('.nav-buttons-container .crystal-btn').forEach(b => b.classList.remove('active-btn'));
 
-            document.getElementById(pageId).classList.add('active-page');
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active-page');
+            }
+            
             if (btnElement && btnElement.closest('.nav-buttons-container')) {
                 btnElement.classList.add('active-btn');
+            } else {
+                document.querySelectorAll('.nav-buttons-container .crystal-btn').forEach(b => {
+                    if(b.getAttribute('onclick') && b.getAttribute('onclick').includes(pageId)) {
+                        b.classList.add('active-btn');
+                    }
+                });
             }
 
             const video = document.getElementById('wishVideo');
@@ -1345,8 +1652,8 @@
             setTimeout(() => {
                 centerBox.style.display = 'flex';
                 startScrollCounter();
-            }, 1200);
-            setTimeout(() => wishText.style.display = 'block', 2200);
+            }, 1000);
+            setTimeout(() => wishText.style.display = 'block', 1800);
 
             const music = document.getElementById('bgMusic');
             music.play().then(() => {
@@ -1417,7 +1724,7 @@
 
         const quizData = [
             { q: "১. অর্পার জন্মদিনে সবচেয়ে বড় আকর্ষণ কোনটি?", options: ["ক) কেক কাটা ও উৎসব", "খ) শুধু ঘুমানো", "গ) পড়াশোনা করা"], correct: 0 },
-            { q: "২. দ্বিপের সাথে অর্পার সম্পর্কটি কীসের?", options: ["ক) বন্ধুত্বের", "খ) ভাই-বোনের", "গ) প্রতিবেশীর"], correct: 1 },
+            { q: "২. দ্বিপের সাথে অর্পার সম্পর্কটি কীসের?", options: ["k) বন্ধুত্বের", "খ) ভাই-বোনের", "গ) প্রতিবেশীর"], correct: 1 },
             { q: "৩. আজকের এই বিশেষ দিনটি কততম জন্মবার্ষিকী?", options: ["ক) ১৮ তম", "খ) ১৯ তম", "গ) ২০ তম"], correct: 1 },
             { q: "৪. অর্পা তার জন্মদিনে কেমন থাকতে সবচেয়ে বেশি পছন্দ করে?", options: ["ক) হাসিখুশি ও আনন্দিত", "খ) রাগী ও গম্ভীর", "গ) চুপচাপ"], correct: 0 }
         ];
@@ -1437,7 +1744,7 @@
                 }, 1800);
             } else {
                 resultEl.style.color = "#ff4081";
-                resultEl.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা কর। 😊";
+                resultInstEl.innerText = "❌ ভুল হয়েছে! আবার চেষ্টা কর। 😊";
             }
         }
 
